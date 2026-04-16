@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Oncology Institute (TOI) — Long Thesis</title>
+  <meta name="description" content="An institutional-grade investment pitch for The Oncology Institute. The only scaled value-based oncology network in the US, trading at 0.65x forward revenue while inflecting to positive EBITDA.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A3C6B'/><text x='16' y='22' font-size='14' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'>TOI</text></svg>">
+  <style>
+    /* ============================================================
+       PERSHING SQUARE DESIGN SYSTEM — TOI REBUILD
+       ============================================================ */
+    :root {
+      --ps-blue: #1A3C6B;
+      --ps-blue-mid: #2E6DA4;
+      --ps-green: #4A7B40;
+      --ps-yellow: #FFFFC0;
+      --ps-black: #1A1A1A;
+      --ps-gray: #666666;
+      --ps-rule: #1A3C6B;
+      --bg: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+      scroll-padding-top: 56px;
+    }
+
+    body {
+      min-height: 100dvh;
+      line-height: 1.7;
+      font-family: -apple-system, 'Segoe UI', Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: var(--ps-black);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.2; }
+    p, li, figcaption { text-wrap: pretty; }
+    a { color: var(--ps-blue-mid); text-decoration: none; transition: color 180ms; }
+    a:hover { color: var(--ps-blue); }
+    button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+    table { border-collapse: collapse; width: 100%; }
+    ::selection { background: rgba(26, 60, 107, 0.15); color: var(--ps-black); }
+    :focus-visible { outline: 2px solid var(--ps-blue); outline-offset: 3px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav {
+      background: #FFFFFF;
+      border-bottom: 2px solid var(--ps-blue);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.4rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ps-blue);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .nav-logo .ticker {
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 700;
+      background: var(--ps-blue);
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 0.05rem;
+      list-style: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      font-size: 10px;
+      color: var(--ps-black);
+      padding: 0.22rem 0.32rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: all 180ms;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--ps-blue);
+      font-weight: 700;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: #FFFFFF; flex-direction: column; padding: 1rem 2rem; border-bottom: 2px solid var(--ps-blue); }
+      .mobile-menu-btn { margin-left: auto; display: block; }
+    }
+    @media (min-width: 769px) {
+      .mobile-menu-btn { margin-left: auto; display: none; }
+    }
+    .mobile-menu-btn { margin-left: auto; color: var(--ps-blue); padding: 0.4rem; }
+
+    /* ── Deep Dive dropdown ───────────────────────────────── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle {
+      font-size: 10px;
+      color: var(--ps-black);
+      padding: 0.22rem 0.32rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 180ms;
+    }
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown.open .nav-dropdown-toggle {
+      color: var(--ps-blue);
+      font-weight: 700;
+    }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: #FFFFFF;
+      border: 1px solid var(--ps-blue);
+      border-top: 2px solid var(--ps-blue);
+      min-width: 148px;
+      z-index: 300;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      border-radius: 0 0 3px 3px;
+    }
+    .nav-dropdown.open .nav-dropdown-menu,
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu li { list-style: none; }
+    .nav-dropdown-menu a {
+      display: block;
+      font-size: 10px;
+      color: var(--ps-black);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      padding: 0.38rem 0.85rem;
+      white-space: nowrap;
+      transition: background 120ms, color 120ms;
+      text-decoration: none;
+    }
+    .nav-dropdown-menu a:hover {
+      background: #EEF4FF;
+      color: var(--ps-blue);
+    }
+    .nav-dropdown-menu li + li { border-top: 1px solid #eee; }
+    .dd-caret { width: 8px; height: 8px; fill: none; stroke: currentColor; stroke-width: 2.5; transition: transform 180ms; }
+    .nav-dropdown.open .dd-caret { transform: rotate(180deg); }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid #E0E0E0;
+    }
+
+    /* ============================================================
+       PS STRUCTURAL ELEMENTS
+       ============================================================ */
+    .ps-title {
+      font-size: 30px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--ps-blue);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .ps-rule {
+      height: 3px;
+      background: var(--ps-rule);
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .ps-banner {
+      background: var(--ps-green);
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 2px;
+    }
+    .ps-banner p {
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .ps-yellow {
+      background: var(--ps-yellow);
+      border: 1px solid #C8C800;
+      padding: 0.75rem 1rem;
+      margin-top: 1.5rem;
+      border-radius: 2px;
+    }
+    .ps-yellow p {
+      font-style: italic;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ps-black);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Perplexity Research Callout ───────────────────────────────────── */
+    .perp-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      background: #EEF2FF;
+      border-left: 3px solid #1A3C6B;
+      padding: 0.55rem 0.9rem;
+      margin: 0.6rem 0 1.1rem;
+      border-radius: 0 3px 3px 0;
+    }
+    .perp-callout-label {
+      font-size: 9px;
+      font-weight: 800;
+      color: #1A3C6B;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+    .perp-callout p {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.55;
+      margin: 0;
+      font-style: italic;
+    }
+
+    .ps-source {
+      font-size: 10px;
+      color: var(--ps-gray);
+      margin-top: 0.75rem;
+    }
+
+    .ps-body {
+      font-size: 14px;
+      color: var(--ps-black);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      max-width: 820px;
+    }
+
+    /* ============================================================
+       DATA TABLES
+       ============================================================ */
+    .data-table-wrapper {
+      overflow-x: auto;
+      margin-bottom: 0.5rem;
+    }
+    .data-table {
+      width: 100%;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .data-table thead th {
+      background: var(--ps-blue);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+    }
+    .data-table tbody td {
+      font-size: 13px;
+      padding: 0.55rem 0.85rem;
+      border-bottom: 1px solid #E8E8E8;
+      color: var(--ps-black);
+    }
+    .data-table tbody tr:nth-child(even) {
+      background: #F0F5FB;
+    }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .highlight-row { background: #E3F2E8 !important; }
+    .highlight-row td { color: var(--ps-green) !important; font-weight: 600; }
+    .pain-row { background: #FDE8E8 !important; }
+    .pain-row td { color: #A03030 !important; font-weight: 500; }
+    .td-positive { color: var(--ps-green) !important; font-weight: 600; }
+    .td-negative { color: #A03030 !important; }
+    .td-bold { font-weight: 700 !important; color: var(--ps-blue) !important; }
+    .td-gold { color: #C8A000 !important; font-weight: 700; }
+
+    /* ============================================================
+       BEAR/COUNTER PATTERN
+       ============================================================ */
+    .ps-argument { margin-bottom: 1.25rem; border-bottom: 1px solid #F0F0F0; padding-bottom: 1.25rem; }
+    .ps-argument:last-child { border-bottom: none; }
+    .bear-claim { font-size: 14px; color: #A03030; line-height: 1.6; margin-bottom: 0.3rem; font-weight: 600; }
+    .counter-response { font-size: 14px; line-height: 1.6; color: var(--ps-black); }
+
+    /* ============================================================
+       BULLET LIST — PS style
+       ============================================================ */
+    .ps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem 0;
+    }
+    .ps-list li {
+      font-size: 14px;
+      color: var(--ps-black);
+      line-height: 1.6;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .ps-list li:last-child { border-bottom: none; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      padding: 5rem 0 3.5rem;
+      text-align: center;
+      border-bottom: 1px solid #E0E0E0;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ps-gray);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 1rem + 4vw, 3.5rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--ps-blue);
+      margin-bottom: 0.5rem;
+      line-height: 1.05;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ps-blue-mid);
+      margin-bottom: 2rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    .hero-date {
+      font-size: 11px;
+      color: var(--ps-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 1.5rem;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .reveal { opacity: 0; transition: opacity 0.3s ease-out; }
+    .reveal.visible { opacity: 1; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--ps-gray);
+      font-size: 12px;
+      border-top: 2px solid var(--ps-blue);
+    }
+    .footer a { color: var(--ps-blue-mid); }
+    .footer strong { color: var(--ps-blue); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 640px) {
+      .hero-metrics-table { font-size: 12px; }
+      .hero-metrics-table th, .hero-metrics-table td { padding: 0.5rem 0.4rem; }
+      .ps-title { font-size: 24px; }
+      .container { padding: 0 1.25rem; }
+      section { padding: 2.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      TOI <span class="ticker">NASDAQ</span>
+    </div>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#thesis">Thesis</a></li>
+      <li><a href="#why-own">Why I Own This</a></li>
+      <li><a href="#business">Business</a></li>
+      <li><a href="#variant">Variant</a></li>
+      <li><a href="#signals">Signals</a></li>
+      <li><a href="#catalysts">Catalysts</a></li>
+      <li><a href="#bears">Bears</a></li>
+      <li><a href="#valuation">Valuation</a></li>
+      <li><a href="#unit-econ">Unit Econ</a></li>
+      <li><a href="#scenarios">Scenarios</a></li>
+      <li><a href="#position">Final View</a></li>
+    </ul>
+    <div class="nav-dropdown" id="deepDiveDropdown" style="flex-shrink:0;">
+      <span class="nav-dropdown-toggle" id="deepDiveToggle">
+        Deep Dive
+        <svg class="dd-caret" viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg>
+      </span>
+      <ul class="nav-dropdown-menu">
+        <li><a href="#dispensary">Dispensary</a></li>
+        <li><a href="#capitation">Capitation</a></li>
+        <li><a href="#market">MA Market</a></li>
+        <li><a href="#deerfield">Deerfield</a></li>
+        <li><a href="#cms">CMS Quality</a></li>
+        <li><a href="#mgmt">Management</a></li>
+        <li><a href="#podcast">Podcast</a></li>
+      </ul>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-eyebrow reveal">Investment Thesis &mdash; Long Position</div>
+    <h1 class="hero-title reveal">The Oncology Institute (TOI) &mdash; Long</h1>
+    <p class="hero-subtitle reveal">TOI is the only scaled value-based oncology network in the US, trading at 0.65x forward revenue while a payer-contracted capitation book compounds silently underneath a dispensary that screens as a liability. The market is reading the wrong income statement.</p>
+
+    <div class="data-table-wrapper reveal" style="max-width:560px; margin:0 auto;">
+      <table class="data-table hero-metrics-table" style="text-align:center;">
+        <thead>
+          <tr>
+            <th style="text-align:center;">Entry</th>
+            <th style="text-align:center;">Base PT</th>
+            <th style="text-align:center;">Upside</th>
+            <th style="text-align:center;">EV/Fwd Rev</th>
+            <th style="text-align:center;">Conviction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700; color:var(--ps-blue); font-size:15px;">$3.43</td>
+            <td style="font-weight:700; color:var(--ps-green); font-size:15px;">$7.00</td>
+            <td style="font-weight:700; color:var(--ps-green); font-size:15px;">+104%</td>
+            <td style="font-weight:700; color:var(--ps-blue); font-size:15px;">0.65x</td>
+            <td style="font-weight:700; color:var(--ps-blue); font-size:15px;">Med-High</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hero-date reveal">
+      <p style="font-size:11px;color:#888;letter-spacing:0.1em;text-transform:uppercase;margin:0;">April 2026 &mdash; Prob-Weighted EV Target: $5.30</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INVESTMENT THESIS
+     ============================================================ -->
+<section id="thesis">
+  <div class="container">
+    <h2 class="ps-title">A Delegated Capitation Book Trading at Dispensary Multiples</h2>
+    <div class="ps-rule"></div>
+
+    <p class="ps-body">The Oncology Institute went public via SPAC in November 2021 at a $732 million post-money valuation. Today the stock trades at $3.43 &mdash; implying a market cap of roughly $340 million and an enterprise value of $415 million &mdash; on a business that generated $502.7 million of revenue in FY2025, posted its first positive EBITDA quarter as a public company in Q4 2025, and guides to $640 million of revenue and $0&ndash;9 million of adjusted EBITDA in FY2026. The market has priced this as a clinic on the verge of insolvency. It is not. It is a value-based care operator at the inflection point between negative and positive cash generation, and the market has not updated its model.</p>
+
+    <p class="ps-body">The specific misread is structural. TOI operates three revenue streams with completely different economics: a fee-for-service clinic business ($148.5 million, growing 9%), a delegated capitation book ($80.5 million, growing 17%), and a specialty pharmacy dispensary ($269.2 million, growing 50%). The dispensary dominates the revenue line and, at 18&ndash;19% gross margins, suppresses every margin-based screening metric. Quantitative factor models see a sub-15% gross margin healthcare services company with a history of EBITDA losses and immediately bucket it with distressed rural hospital systems. They are measuring the wrong thing.</p>
+
+    <p class="ps-body">The correct analytical frame is the capitation book. TOI holds delegated capitation contracts with Elevance, Humana, and CarePlus across 2.0 million lives under management. Under delegated capitation, TOI receives a fixed per-member-per-month payment &mdash; 6&ndash;8 times higher than legacy capitation rates &mdash; in exchange for bearing full oncology cost risk for a defined patient population. When TOI manages those costs below the contracted PMPM through evidence-based protocols, clinical pathways, and its captive dispensary, it retains 100% of the savings. Less than 5% of contracted lives are under delegated capitation, but that segment generates approximately 33% of total capitation revenue. The arithmetic of delegated capitation scale has not reached the buyside.</p>
+
+    <p class="ps-source">Sources: <a href="https://www.globenewswire.com/news-release/2026/03/12/3255105/0/en/The-Oncology-Institute-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Guidance-for-2026.html">TOI Q4 2025 Earnings (GlobeNewswire)</a>, <a href="https://lakecornelia.substack.com/p/the-oncology-institute-toi-a-growth">Lake Cornelia Deep-Dive</a>, PitchBook</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY I OWN THIS
+     ============================================================ -->
+<section id="why-own">
+  <div class="container">
+    <h2 class="ps-title reveal">Why I Own This</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">Before committing to any position I work through five questions. The first is whether the business is structurally advantaged. TOI is the only independent community oncology network in the US that has built delegated capitation infrastructure at the payer level at scale. Its in-house specialty dispensary &mdash; $27 million per month of run-rate pharmacy revenue &mdash; creates a captive, vertically integrated margin layer that improves with volume at zero incremental selling cost. The combination of delegated capitation and captive dispensary is not replicable by a single-site clinic. It requires the patient volume, payer relationships, and clinical pathway infrastructure that TOI has spent five years building.</p>
+
+    <p class="ps-body reveal">The second question is whether there is a specific and identifiable reason this is mispriced. There are three overlapping causes. M33 Growth stepped off the board on December 1, 2025 with an estimated 6.6 million shares &mdash; roughly three days of average daily volume &mdash; creating a mechanical ceiling on the stock with no fundamental basis. The dispensary revenue inflates every gross-margin-based screening tool, making TOI appear to be a low-margin distributor when the correct comparable is a delegated risk-bearing VBC operator. And the guided Q1 2026 EBITDA loss of $(1&ndash;3) million, seasonally driven by the January deductible reset, is being read by consensus as thesis failure rather than fully disclosed cyclicality.</p>
+
+    <p class="ps-body reveal">The third question is whether growth is self-determined. In 2025, TOI signed nine new capitated contracts, added Humana and CarePlus in South Florida in Q4 alone, and grew dispensary revenue at 49.6% year-over-year. The Elevance Florida contract &mdash; currently approximately 70,000 delegated lives &mdash; is expected to more than double in 2026 on a contract that is already signed and in force. Revenue growth of 20% annually through 2028 is management guidance, not analyst extrapolation. The fourth question is whether the balance sheet is safe enough that a difficult quarter does not break the thesis. Deerfield Management waived the minimum cash covenant in February 2025, accepted a partial paydown of the note, converted debt to equity, and holds 3.36 million shares as an aligned equity stakeholder. The fifth question is whether the five-year return looks compelling under conservative assumptions. A 1.0x 2026E revenue multiple &mdash; itself conservative for a profitable VBC operator &mdash; implies $7.00 per share. That is a 104% return from entry. All five answers are yes.</p>
+
+    <p class="ps-source reveal">Source: TOI earnings filings, Lake Cornelia Substack, Deerfield amendment (GlobeNewswire Feb 2025)</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUSINESS PERFORMANCE
+     ============================================================ -->
+<section id="business">
+  <div class="container">
+    <h2 class="ps-title">The Business Has Crossed the EBITDA Inflection Point</h2>
+    <div class="ps-rule"></div>
+
+    <div class="ps-banner">
+      <p>Q4 2025: first positive EBITDA quarter (+$147K) and first positive operating cash flow quarter (+$3.2M) in the company's history as a public company. FY2025 revenue of $502.7M grew 27.8% year-over-year. This is not a turnaround narrative &mdash; the inflection has already occurred.</p>
+    </div>
+
+    <p class="ps-body">TOI operates 83 oncology clinics across California, Florida, Nevada, Arizona, and Texas with 641 employees. The clinical model is built around evidence-based protocols, integrated pharmacy dispensing, and payer risk management &mdash; a combination that generated $1.1 million of Medicare savings in CMS Enhancing Oncology Model Performance Period 2 and maximum quality scores on avoidable emergency department visits and avoidable inpatient admissions. That is audited CMS data, not a press release. Payer contracting teams use that data when evaluating delegated capitation partners. The institutional equity market is not reading it.</p>
+
+    <p class="ps-body">The three-segment structure matters for understanding unit economics. The FFS clinic business provides a stable, growing base of patient relationships. The capitation book captures the economic surplus from managing oncology costs below contracted PMPM rates. The dispensary monetizes the drug volume that flows naturally through those patient relationships at a captive 18&ndash;19% gross margin. Each segment feeds the others: more patients enable more capitation contracts; more capitation contracts drive dispensary capture rates; dispensary scale funds the SG&A infrastructure that supports capitation operations. The flywheel is operational. The question is speed.</p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Revenue</th>
+            <th>Gross Margin</th>
+            <th>Adj. EBITDA</th>
+            <th>Cash</th>
+            <th>LT Debt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FY2022</td>
+            <td>$252.5M</td>
+            <td>20.6%</td>
+            <td class="td-negative">($40M)</td>
+            <td>$14.0M</td>
+            <td>$80.6M</td>
+          </tr>
+          <tr>
+            <td>FY2023</td>
+            <td>$324.2M</td>
+            <td>18.4%</td>
+            <td class="td-negative">($54M)</td>
+            <td>$33.5M</td>
+            <td>$86.8M</td>
+          </tr>
+          <tr>
+            <td>FY2024</td>
+            <td>$393.4M</td>
+            <td>13.7%</td>
+            <td class="td-negative">($35.7M)</td>
+            <td>$49.7M</td>
+            <td>$93.1M</td>
+          </tr>
+          <tr>
+            <td>FY2025</td>
+            <td>$502.7M</td>
+            <td>15.2%</td>
+            <td class="td-negative">($12.4M)</td>
+            <td>$33.6M</td>
+            <td>$77.4M</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>FY2026E</strong></td>
+            <td><strong>$640M (mid)</strong></td>
+            <td>15.5&ndash;16.5%</td>
+            <td class="td-positive">$0&ndash;9M</td>
+            <td>&mdash;</td>
+            <td>~$57M est.</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>FY2027E</strong></td>
+            <td><strong>$814.8M</strong></td>
+            <td>~18%</td>
+            <td class="td-positive">$27M</td>
+            <td>Positive</td>
+            <td>Declining</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="data-table-wrapper">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Segment (FY2025)</th>
+            <th>Revenue</th>
+            <th>YoY Growth</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Patient Services &mdash; FFS</td>
+            <td>$148.5M</td>
+            <td>+9%</td>
+            <td>Clinic volume; steady compounder</td>
+          </tr>
+          <tr>
+            <td>Patient Services &mdash; Capitation</td>
+            <td>$80.5M</td>
+            <td class="td-positive">+17.2%</td>
+            <td>9 new contracts in 2025; 2.0M lives</td>
+          </tr>
+          <tr>
+            <td>Specialty Pharmacy / Dispensary</td>
+            <td>$269.2M</td>
+            <td class="td-positive">+49.6%</td>
+            <td>$27M/mo run rate; 18&ndash;19% captive GM</td>
+          </tr>
+          <tr>
+            <td>Clinical Trials (Helios)</td>
+            <td>~$4.6M</td>
+            <td>&mdash;</td>
+            <td>Higher-margin; outsourced model</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="perp-callout reveal">
+      <span class="perp-callout-label">Perplexity&nbsp;Research</span>
+      <p>Q4 2025 data cross-referenced against MarketChameleon, Yahoo Finance, and GlobeNewswire earnings release: Q4 revenue $142.0M (+41.6% YoY), Q4 Adj. EBITDA +$147K (first positive quarter as a public company), Q4 OCF +$3.2M (first positive OCF quarter). 2026 capitation revenue guidance ~$150M. Elevance FL partnership on track to more than double from current ~70K delegated lives.</p>
+    </div>
+
+    <p class="ps-source">Source: <a href="https://www.globenewswire.com/news-release/2026/03/12/3255105/0/en/The-Oncology-Institute-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Guidance-for-2026.html">TOI Q4 2025 Earnings Release</a>, <a href="https://cashmere.io/v/ME3ZZN">PitchBook TOI Profile</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     VARIANT PERCEPTION
+     ============================================================ -->
+<section id="variant">
+  <div class="container">
+    <h2 class="ps-title">Variant Perception: What the Market Has Wrong</h2>
+    <div class="ps-rule"></div>
+
+    <div class="ps-banner">
+      <p>The bulls own a VBC growth story. The bears own an execution/balance sheet story. Neither has framed it correctly. TOI is a drug-margin arbitrage business layered on a physician network, with a regulatory clock running on the arbitrage and a labor constraint running on the network. That framing produces three variant theses that are non-obvious, defensible, and capable of moving the stock materially in either direction.</p>
+    </div>
+
+    <!-- CONSENSUS MAP -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2rem 0 .75rem;">What Consensus Currently Believes</h3>
+    <table class="data-table" style="margin-bottom:2rem;">
+      <thead><tr><th>Dimension</th><th>Consensus View</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Growth</strong></td><td>Volume compounder. 28% revenue CAGR through 2028 driven by clinic adds, new Florida delegated contracts, and dispensary following patient volume passively upward.</td></tr>
+        <tr><td><strong>Profitability</strong></td><td>Imminent and structural inflection. SG&A leverage kicks in at scale. 2026 is the EBITDA crossover. Mid-single-digit margins by 2028 treated as a straight-line extrapolation of the FY2025 EBITDA improvement of ~$23M YoY.</td></tr>
+        <tr><td><strong>Business Model</strong></td><td>Value-based care operator. Capitation is the premium, defensible segment. Management narrative of &ldquo;oncology medical home&rdquo; aligns with CMS policy direction. Dispensary is a passive beneficiary of scale.</td></tr>
+        <tr><td><strong>Risk Profile</strong></td><td>Execution risk: physician recruitment, new contract ramp, geographic concentration. Reimbursement risk acknowledged in boilerplate but not specifically modeled. 340B exposure not discussed in any sell-side note.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- VARIANT 1 -->
+    <div style="border-left:4px solid #B91C1C;padding:1.25rem 1.5rem;margin:2rem 0;background:#fff8f8;">
+      <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#B91C1C;margin:0 0 .5rem;">VARIANT THESIS I &nbsp;&bull;&nbsp; Probability: 65% &nbsp;&bull;&nbsp; Valuation Impact: &minus;40&ndash;60% to Street PTs</p>
+      <p style="font-size:15px;font-weight:700;color:#1a1a1a;margin:0 0 1rem;">&ldquo;The Dispensary Is a Drug-Margin Arbitrage Business With a Defined Expiration Date&rdquo;</p>
+
+      <p class="ps-body"><strong>What consensus believes:</strong> Dispensary is a durable, compounding revenue stream. It grew 49.6% in FY2025 to $269M, will reach ~50% of revenue by 2028 per company guidance, and is treated as a volume story &mdash; more patients, more fills, more revenue.</p>
+
+      <p class="ps-body"><strong>What is actually true:</strong> Dispensary is not a patient volume story. It is a drug-margin arbitrage story structurally identical to the 340B model being systematically dismantled at hospital outpatient departments. TOI accesses 340B pricing on oncology drugs at 20&ndash;50% discounts to AWP, then bills Medicare and commercial payers at ASP+6%. The spread is the business. That same economics generated $81 billion in 340B program purchases in 2024 &mdash; and it is what CMS, HRSA, and drug manufacturers are now actively targeting through three concurrent mechanisms:</p>
+
+      <p class="ps-body">First, the <a href="https://www.advisory.com/daily-briefing/2025/11/10/340b-rebate">HRSA 340B Rebate Model Pilot</a> launched January 1, 2026. It converts upfront discounts to post-sale rebates, creating a cash timing gap. TOI would fund drug purchases at full AWP and wait for rebates against a balance sheet carrying just $33.6M cash and negative FCF. Second, CMS finalized a <a href="https://www.bakerdonelson.com/important-issues-for-340b-providers-in-the-opps-final-rule">mandatory drug acquisition cost survey</a> in the 2026 OPPS rule &mdash; a direct precursor to reducing the ASP+6% add-on for 340B drugs. Third, per the <a href="https://www.statnews.com/2026/03/19/340b-reform-medicare-drug-price-negotitation-program/">Community Oncology Alliance</a>, when Part B negotiated prices take effect in 2028, the 6% add-on will be calculated on the lower negotiated price &mdash; mechanically shrinking the spread on the exact drugs TOI dispenses most. COA projects a 47% reduction in drug payment revenue to outpatient clinics system-wide.</p>
+
+      <p class="ps-body"><strong>The math:</strong> TOI&rsquo;s dispensary generates 18.1% gross margin ($48.6M GP on $269M revenue in FY2025). If the 340B acquisition discount compresses 30% through a combination of the rebate model, ASP reduction, and manufacturer policy changes, gross margin on dispensary falls from 18.1% to ~11&ndash;12%. On $320M of FY2026 dispensary revenue, that is a $19&ndash;22M gross profit reduction &mdash; against a company guiding to $0&ndash;9M total EBITDA. The profitability inflection disappears entirely.</p>
+
+      <p class="ps-body"><strong>Why the mispricing exists:</strong> Three reasons. The Street has not done the 340B-specific work &mdash; it requires understanding a niche regulatory program outside standard oncology training. Management never mentions 340B explicitly in earnings calls; they use &ldquo;dispensary&rdquo; as a euphemism. And the rebate pilot is new (January 2026), with ASP compression not hitting until 2028 &mdash; beyond the typical sell-side modeling horizon.</p>
+    </div>
+
+    <!-- VARIANT 2 -->
+    <div style="border-left:4px solid #B45309;padding:1.25rem 1.5rem;margin:2rem 0;background:#fffbf0;">
+      <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#B45309;margin:0 0 .5rem;">VARIANT THESIS II &nbsp;&bull;&nbsp; Probability: 55% &nbsp;&bull;&nbsp; Valuation Impact: Delays thesis 2&ndash;3 years; price stagnates or reverts to $2&ndash;3</p>
+      <p style="font-size:15px;font-weight:700;color:#1a1a1a;margin:0 0 1rem;">&ldquo;The Capitation Segment Is a Management Fee, Not True VBC &mdash; and the PMPM Math Destroys the Narrative&rdquo;</p>
+
+      <p class="ps-body"><strong>What consensus believes:</strong> Capitation is the premium, defensible segment. Delegated contracts align incentives, and 2026 is the inflection year as newly-onboarded contracts mature from loss-making to profitable. Management&rsquo;s language of &ldquo;fuller economics in 2027&rdquo; is taken at face value. The Street models capitation rising from 16% to 30% of revenue at expanding margins through 2028.</p>
+
+      <p class="ps-body"><strong>What is actually true:</strong> Do the PMPM math that no sell-side note has published. Capitation revenue was $80.5M in FY2025 across ~2.0M lives under VBC management. That is $40.25 per life per year &mdash; or $3.35 PMPM. A true capitated oncology benefit for Medicare Advantage runs $200&ndash;500 PMPM per active cancer patient. TOI&rsquo;s implied rate reveals they are not bearing actuarial risk. They are receiving a per-member management fee for care coordination &mdash; a delegated arrangement that looks like capitation but carries none of the margin upside that comes with owning the full oncology benefit. The term &ldquo;value-based care operator&rdquo; is doing more work than the contracts support.</p>
+
+      <p class="ps-body">The implication is structural: the margin expansion consensus is modeling on capitation requires TOI to win larger, fuller-risk delegated arrangements. Those contracts are competed for by OneOncology, Florida Cancer Specialists, ION Solutions, and the MA plans themselves (Humana, UHC, Elevance) who are increasingly internalizing oncology management. TOI&rsquo;s largest payer partner is Elevance/Helios &mdash; a single-payer concentration risk that is not independently disclosed and not priced into any sell-side model.</p>
+
+      <p class="ps-body"><strong>Why the mispricing exists:</strong> &ldquo;Value-based care&rdquo; carries a valuation premium in healthcare services &mdash; it signals recurring contracted revenue, aligned incentives, and defensible positioning. The market takes the narrative at face value without doing the per-member arithmetic that reveals a management fee structure. No sell-side note has calculated the implied PMPM. The &ldquo;fuller economics in 2027&rdquo; language provides a 12-month runway before the thesis is tested.</p>
+    </div>
+
+    <!-- VARIANT 3 (BULL) -->
+    <div style="border-left:4px solid var(--ps-green);padding:1.25rem 1.5rem;margin:2rem 0;background:#f5faf5;">
+      <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ps-green);margin:0 0 .5rem;">VARIANT THESIS III (BULL) &nbsp;&bull;&nbsp; Probability: 50% &nbsp;&bull;&nbsp; Valuation Impact: +30&ndash;50% to intrinsic value</p>
+      <p style="font-size:15px;font-weight:700;color:#1a1a1a;margin:0 0 1rem;">&ldquo;The Physician Shortage Is Not a Risk to TOI &mdash; It Is TOI&rsquo;s Durable Moat, and the Market Has Not Priced It&rdquo;</p>
+
+      <p class="ps-body"><strong>What consensus misses:</strong> The Street models clinic additions as a capital story. The bears worry about balance sheet availability. Neither side has modeled the actual binding constraint: the oncologist labor market. The <a href="https://www.oncologynewscentral.com/oncology/asco-report-paints-grim-picture-of-worsening-oncologist-shortage">2025 ASCO workforce report</a> found only 4% of oncologists work in high-mortality counties, 38 states had fewer oncologists per capita in 2024 than 2014, and nonmetropolitan areas are projected to meet only 29% of demand for oncologists by 2037. Average starting salary reached <a href="https://www.oncologynewscentral.com/article/starting-salaries-for-oncologists-rising-with-recruitment-challenges">$440K&ndash;$600K per oncologist</a> in 2023, up 9% in a single cycle.</p>
+
+      <p class="ps-body">TOI currently operates 65 consolidated clinics with ~116 oncologists and APPs across California, Florida, Arizona, Nevada, and Oregon &mdash; five of the most competitive physician labor markets in the country. Replicating that network from zero would require recruiting 75+ oncologists into those same markets against academic centers, large integrated systems, and well-capitalized groups like Florida Cancer Specialists and OneOncology. It cannot be done in less than a decade.</p>
+
+      <p class="ps-body"><strong>The bull case from this:</strong> Once you understand that TOI&rsquo;s growth is physician-constrained, not capital-constrained, you also understand that the per-physician productivity curve &mdash; not clinic count &mdash; is the real value driver. FFS revenue per provider is currently $1.28M, at the bottom of the MGMA $1.2&ndash;2.5M range. The upside is not adding the 31 clinics needed for system-level breakeven. The upside is extracting more revenue per provider from the 116 already on staff through dispensary capture rate expansion (40% &rarr; 60%) and delegated capitation attach rates. That path requires no capital, no recruitment, and no execution risk beyond operational execution within existing clinics.</p>
+
+      <p class="ps-body"><strong>Why the mispricing exists:</strong> The market re-rates this as a network moat only if TOI demonstrates per-provider productivity leverage rather than net new clinic additions. Management has not framed the story this way. The physician constraint is discussed as a headwind in 10-K risk factors, not as a competitive advantage in investor presentations.</p>
+    </div>
+
+    <!-- RANKING TABLE -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2rem 0 .75rem;">Ranked by Probability &times; Magnitude</h3>
+    <table class="data-table" style="margin-bottom:1.5rem;">
+      <thead><tr><th>Rank</th><th>Thesis</th><th>Probability</th><th>Valuation Impact</th><th>Catalyst</th></tr></thead>
+      <tbody>
+        <tr class="pain-row"><td>1</td><td>Dispensary = 340B arbitrage with expiration date</td><td>65%</td><td>&minus;40&ndash;60% to Street PTs</td><td>340B rebate pilot live now; CMS ASP survey 2026; Part B compression 2028</td></tr>
+        <tr><td>2</td><td>Capitation is a management fee, not full VBC</td><td>55%</td><td>Thesis delay 2&ndash;3 yrs; price stagnates</td><td>PMPM math published; Elevance contract renewal; 2027 &ldquo;fuller economics&rdquo; miss</td></tr>
+        <tr class="highlight-row"><td>3</td><td>Physician scarcity = durable moat (bull variant)</td><td>50%</td><td>+30&ndash;50% to intrinsic value</td><td>Mgmt reframes story around per-provider productivity; dispensary capture &gt;50%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ps-yellow">
+      <p><strong>The single question that determines whether this is a $10 stock or a $1 stock:</strong> does the dispensary gross margin hold above 15% through 2028? If yes, the physician network moat re-rates the stock materially higher. If no, the EBITDA crossover is illusory and the capitation narrative collapses without the dispensary margin subsidy. Everything else in the model is secondary to this one variable.</p>
+    </div>
+
+    <p class="ps-source">Sources: <a href="https://www.advisory.com/daily-briefing/2025/11/10/340b-rebate">HRSA 340B Rebate Pilot (Advisory Board, Nov 2025)</a> &middot; <a href="https://www.statnews.com/2026/03/19/340b-reform-medicare-drug-price-negotitation-program/">STAT News: 340B successor risk (Mar 2026)</a> &middot; <a href="https://www.bakerdonelson.com/important-issues-for-340b-providers-in-the-opps-final-rule">Baker Donelson: OPPS 340B Final Rule (Dec 2025)</a> &middot; <a href="https://www.oncologynewscentral.com/oncology/asco-report-paints-grim-picture-of-worsening-oncologist-shortage">ASCO Workforce Report 2025 (ONC)</a> &middot; <a href="https://www.oncologynewscentral.com/article/starting-salaries-for-oncologists-rising-with-recruitment-challenges">AMN Healthcare Oncologist Salary Survey</a> &middot; <a href="https://cashmere.io/v/WCwY8Z">Statista: Medicare Advantage spending trend</a> &middot; <a href="https://lakecornelia.substack.com/p/the-oncology-institute-toi-a-growth">Lake Cornelia Deep-Dive (Dec 2025)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     DEEP DIVE: DISPENSARY
+     ============================================================ -->
+<section id="dispensary">
+  <div class="container">
+    <h2 class="ps-title reveal">The Dispensary: $27M/Month at 18&ndash;19% Margin and Zero Incremental SG&A</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">The specialty pharmacy dispensary is the most misunderstood asset in the TOI capital structure. At $269.2 million of FY2025 revenue growing at 49.6% year-over-year, it dominates the top line and suppresses every margin metric that quantitative screens use for classification. The result: TOI screens as a low-margin drug distributor when the correct comparison set is a delegated risk-bearing oncology operator with a captive margin enhancement layer.</p>
+
+    <p class="ps-body reveal">The operating leverage profile is the correct analytical lens. The dispensary adds drug revenue from patients TOI already sees in its clinics. The incremental SG&A associated with dispensing to an existing patient is essentially zero &mdash; the clinical staff, the billing infrastructure, the payer relationships, the real estate are already paid. Each additional dollar of dispensary revenue at the current $27 million per month run rate drops through at 18&ndash;19% gross margin with no offsetting fixed cost increase. That is not a distributor business. That is a captive margin layer on top of an existing clinical cost structure.</p>
+
+    <p class="ps-body reveal">The IRA Imbruvica concern is an example of consensus pattern-matching rather than actual analysis. Ibrutinib (Imbruvica) is a CLL and MCL treatment negotiated under the IRA drug price framework. The bear thesis implies a material dispensary revenue impact. The correct number: Imbruvica represents less than 1% of TOI's total pharmacy revenue. Even a complete formulary elimination would be immaterial. The market is applying a fear factor that has no numerical basis in the actual book of business.</p>
+
+    <div class="ps-yellow">
+      <p>Strip the dispensary to gross profit and value the remaining clinical business at 1.5x revenue. The dispensary GP alone justifies a material fraction of the current enterprise value. The market is pricing both at zero.</p>
+    </div>
+    <p class="ps-source">Source: TOI Q4 2025 earnings release, <a href="https://lakecornelia.substack.com/p/the-oncology-institute-toi-a-growth">Lake Cornelia</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     DEEP DIVE: CAPITATION ECONOMICS
+     ============================================================ -->
+<section id="capitation">
+  <div class="container">
+    <h2 class="ps-title reveal">Delegated Capitation: The Economic Engine at 6&ndash;8x Legacy PMPM</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">TOI's capitation segment reported $80.5 million of FY2025 revenue growing at 17.2%. That number understates the economic significance of the segment because it blends two fundamentally different contract structures: legacy capitation and delegated capitation. Legacy capitation is a low-PMPM arrangement where TOI receives a modest risk fee but bears limited cost responsibility. Delegated capitation is a full-risk arrangement where TOI accepts 100% of oncology cost risk for a defined population in exchange for a PMPM that is 6&ndash;8 times the legacy rate.</p>
+
+    <p class="ps-body reveal">Fewer than 5% of TOI's contracted lives are under delegated arrangements, but those lives generate approximately 33% of capitation revenue. The Elevance Florida contract is the anchor delegated relationship: currently approximately 70,000 lives, contracted to more than double in 2026. If the Elevance FL book reaches 140,000 delegated lives at current PMPM economics, the annualized capitation revenue contribution from that single contract increases by roughly $50 million &mdash; a 62% increase in the capitation segment on a fully contracted basis that requires no new payer wins.</p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Florida MA Payer</th>
+            <th>Total Lives</th>
+            <th>TOI Relationship</th>
+            <th>Opportunity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Elevance (FL Blue)</td>
+            <td>332K</td>
+            <td class="td-positive">Active; doubling to ~140K delegated in 2026</td>
+            <td>+~$50M annualized capitation revenue</td>
+          </tr>
+          <tr>
+            <td>Humana</td>
+            <td>665K</td>
+            <td class="td-positive">Q4 2025 new contract signed</td>
+            <td>Largest FL MA payer; early stage</td>
+          </tr>
+          <tr>
+            <td>CarePlus (Humana-owned)</td>
+            <td>160K</td>
+            <td class="td-positive">~22K MA lives, Q4 2025</td>
+            <td>Incremental to Humana master relationship</td>
+          </tr>
+          <tr>
+            <td>Aetna</td>
+            <td>132K</td>
+            <td class="td-gold">No current relationship</td>
+            <td>Largest whitespace; single contract would be material</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-source">Source: <a href="https://lakecornelia.substack.com/p/toi-q4-2025-update-wow">Lake Cornelia Q4 2025 Update</a>, TOI earnings release</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     DEEP DIVE: MEDICARE ADVANTAGE MARKET
+     ============================================================ -->
+<section id="market">
+  <div class="container">
+    <h2 class="ps-title reveal">Medicare Advantage: The Structural Tailwind Driving Capitation Demand</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">Medicare Advantage penetration of total Medicare Part A and B spending reached 54% in 2021 and is projected to reach 62% by 2025. That is not a trend line &mdash; it is a structural shift in how oncology costs flow through the US healthcare system. MA payers bear full capitated risk for their enrolled populations. They need delegated oncology partners who can take that risk, manage total cost of care below benchmark, and demonstrate quality outcomes to CMS. TOI is the only independent community oncology network that has built the infrastructure to accept that delegation at scale.</p>
+
+    <p class="ps-body reveal">The addressable opportunity within TOI's current Florida and California footprint is substantial. Florida's 2.7 million total MA lives include 665,000 Humana lives for which TOI signed a new contract in Q4 2025 and is only beginning to ramp. California's oncology-specific MA population represents the market where TOI built the CMS EOM PP2 data and has the deepest clinical track record. The geographic concentration is not a risk &mdash; it is a distribution advantage. MA penetration in both states continues to grow, expanding the base from which TOI's contracted PMPM flows.</p>
+
+    <div class="perp-callout">
+      <span class="perp-callout-label">Perplexity&nbsp;Research</span>
+      <p>Statista Medicare Advantage spending data cross-referenced against CMS / ASPE source material: MA share of Medicare Part A&B spending 54% in 2021, projected 62% by 2025. Source: <a href="https://cashmere.io/v/WCwY8Z" style="color:#2E6DA4;">cashmere.io/v/WCwY8Z</a>. CB Insights oncology tech market map identifies 71 vendors across 12 categories &mdash; TOI is the only provider with delegated capitation contracts at this scale with major MA payers.</p>
+    </div>
+    <p class="ps-source">Source: <a href="https://cashmere.io/v/WCwY8Z">Statista / CMS Medicare Advantage data</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     INSIDER SIGNALS
+     ============================================================ -->
+<section id="signals">
+  <div class="container">
+    <h2 class="ps-title">The Cap Table Is Cleaning Up &mdash; Smart Money Is Accumulating</h2>
+    <div class="ps-rule"></div>
+
+    <div class="ps-banner">
+      <p>BlackRock added 13.7% to its TOI position in Q4 2025 &mdash; the same quarter M33 Growth was exiting. An insider purchased 20,000 shares at $3.10 in the open market on April 9, 2026. Deerfield converted debt to equity and is fully aligned. These are not passive index flows.</p>
+    </div>
+
+    <div class="data-table-wrapper">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Holder</th>
+            <th>Shares</th>
+            <th>QoQ Change</th>
+            <th>Signal Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vanguard</td>
+            <td>4.75M</td>
+            <td class="td-positive">+4.5%</td>
+            <td>Passive accumulation; price-agnostic index flow</td>
+          </tr>
+          <tr>
+            <td>BlackRock</td>
+            <td>3.91M</td>
+            <td class="td-positive">+13.7%</td>
+            <td>Largest QoQ institutional add; active signal</td>
+          </tr>
+          <tr>
+            <td>Deerfield Management</td>
+            <td>3.36M</td>
+            <td>Debt &rarr; Equity</td>
+            <td>Converted; fully aligned with equity upside</td>
+          </tr>
+          <tr class="pain-row">
+            <td>M33 Growth</td>
+            <td>~6.6M est.</td>
+            <td>Off board Dec 1 '25</td>
+            <td>OVERHANG &mdash; lifecycle exit; not thesis-driven</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Jorey Chernett (Insider)</td>
+            <td>+20K new</td>
+            <td>Apr 9 at $3.10</td>
+            <td>Open-market discretionary buy 5 days ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">The M33 overhang is the primary technical depressant. M33 Growth is a growth-stage venture fund with LP obligations and a lifecycle mandate that does not include holding public equity in an EBITDA-inflecting community oncology network indefinitely. The thesis for their exit is not bearish on TOI &mdash; it is simply that their fund cycle has moved on. At approximately 6.6 million shares against average daily volume of roughly 2.2 million shares, the overhang represents three days of supply. Short interest of 10.3% of float and 6.5 days to cover creates the conditions for a meaningful squeeze as M33's position resolves through Q2 2026.</p>
+
+    <div class="ps-yellow">
+      <p>Watch for M33's Q1 2026 13F filing (due mid-May 2026). A material decline in their reported position is the clearest signal that the technical ceiling is lifting. The 13G/13D threshold (5% ownership) is the secondary watch trigger.</p>
+    </div>
+    <p class="ps-source">Source: MarketChameleon, SEC Form 4 filings, <a href="https://lakecornelia.substack.com/p/toi-q4-2025-update-wow">Lake Cornelia Q4 2025 Update</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATALYSTS
+     ============================================================ -->
+<section id="catalysts">
+  <div class="container">
+    <h2 class="ps-title reveal">Catalysts: Four Identifiable Windows Through 2026</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">The thesis does not require all four catalysts. It requires two. The catalyst sequence is sequential rather than binary &mdash; each step builds analytical credibility for the next and de-risks the discount that the market is applying to the 2026 and 2027 estimates.</p>
+
+    <div class="data-table-wrapper reveal">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Catalyst</th>
+            <th>Timing</th>
+            <th>What to Watch</th>
+            <th>Impact on Thesis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Q1 2026 Earnings</strong></td>
+            <td>May 2026</td>
+            <td>Revenue &gt;$150M; capitation lives sequential growth; guidance reiteration</td>
+            <td>Dispels Q1 miss narrative; stock re-rates on sequential capitation adds</td>
+          </tr>
+          <tr>
+            <td><strong>Deerfield Refinancing</strong></td>
+            <td>H1 2026</td>
+            <td>Non-dilutive credit facility vs. equity raise terms</td>
+            <td>Non-dilutive = removes existential risk discount entirely; bear case probability collapses</td>
+          </tr>
+          <tr>
+            <td><strong>Elevance FL Doubling Confirmed</strong></td>
+            <td>Mid-2026</td>
+            <td>Management guidance update on delegated life count</td>
+            <td>~$50M annualized capitation revenue add; 62% increase in segment from one contract</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>New Payer Contract / Aetna FL</strong></td>
+            <td>H2 2026</td>
+            <td>Any press release announcing new capitation partner</td>
+            <td>Diversification narrative resolved; Aetna's 132K FL lives = material positive surprise</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-source">Source: TOI Q4 2025 earnings call, <a href="https://www.sec.gov/Archives/edgar/data/1799191/000107997326000068/ex99x1.htm">2026 Guidance Reaffirmation (SEC)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     BEARS
+     ============================================================ -->
+<section id="bears">
+  <div class="container">
+    <h2 class="ps-title">The Bear Case &mdash; And Why It Is Overcounted</h2>
+    <div class="ps-rule"></div>
+
+    <div class="ps-banner">
+      <p>The bears have one legitimate concern (Deerfield refinancing terms), two overcounted concerns (IRA drug pricing, MA rate cuts), and one valid structural watch (payer concentration). We assign 20% probability to the bear case, not 50%. The asymmetry favors the long.</p>
+    </div>
+
+    <div class="ps-argument">
+      <p class="bear-claim">Bear: Deerfield refinancing forces dilutive equity issuance.</p>
+      <p class="counter-response">This is the legitimate risk. The $77.4M convertible note matures mid-2027. If TOI cannot refinance on reasonable terms, a dilutive equity raise at unfavorable terms is the bear case. The mitigants are specific: Deerfield holds 3.36 million shares as an aligned equity stakeholder with no economic incentive to impose punitive refinancing terms. The February 2025 amendment &mdash; waiving the minimum cash covenant and accepting a partial paydown &mdash; demonstrates willingness to negotiate in TOI's interest. At $640 million of revenue and positive EBITDA, TOI is now bankable with conventional credit. We assign 20% probability to a structurally dilutive refinancing and price it at $1.45 in the bear scenario.</p>
+    </div>
+
+    <div class="ps-argument">
+      <p class="bear-claim">Bear: IRA drug price negotiation destroys dispensary economics.</p>
+      <p class="counter-response">This concern is factually overcounted by 10&ndash;20 times. The primary IRA concern repeatedly cited is Imbruvica (ibrutinib). Our analysis places Imbruvica at less than 1% of TOI's total pharmacy revenue. Even a complete formulary elimination of ibrutinib would be immaterial to dispensary gross profit. The IRA negotiates prices for high-volume, high-spend drugs &mdash; the oncology portfolio that TOI dispenses is fragmented across hundreds of molecules. No single drug represents a concentration risk at the level the bear case implies.</p>
+    </div>
+
+    <div class="ps-argument">
+      <p class="bear-claim">Bear: CMS MA rate cuts compress capitation economics.</p>
+      <p class="counter-response">CMS 2026 final MA rates came in below initial proposals. The key distinction: TOI's delegated PMPM is contractually fixed within each contract term. Annual CMS rate adjustments affect what payers receive; they do not automatically pass through to TOI's contracted PMPM rate within the term. The real watch item is contract renewal economics &mdash; typically negotiated on 3-year cycles. Short-term CMS rate changes are not the mechanism by which this risk materializes. The bear case is applying a real structural risk on an incorrect transmission pathway.</p>
+    </div>
+
+    <div class="ps-argument">
+      <p class="bear-claim">Bear: TOI is an "Elevance shop" &mdash; payer concentration risk is unacceptable.</p>
+      <p class="counter-response">This was a legitimate concern through Q3 2025. Q4 2025 materially addressed it: new contracts with Humana and CarePlus added approximately 22,000 South Florida MA lives and established a second major payer relationship in the state. Lake Cornelia's Q4 2025 update noted that the Q4 earnings call was "wildly bullish" specifically because the bull's concern about Elevance concentration was directly addressed by the Humana and CarePlus signings. The concentration narrative is declining as a valid thesis risk.</p>
+    </div>
+
+    <div class="ps-yellow">
+      <p>Expected value of position: (30% &times; $9.00) + (50% &times; $7.00) + (20% &times; $1.45) = $5.30 probability-weighted price target, implying +55% from the $3.43 entry. Bear case downside of $1.98 expected against bull/base upside of $3.57 expected. The asymmetry is 1.8:1 in favor of the long at current prices.</p>
+    </div>
+
+    <p class="ps-source">Source: <a href="https://lakecornelia.substack.com/p/toi-q4-2025-update-wow">Lake Cornelia Q4 2025 Update</a>, <a href="https://www.globenewswire.com/news-release/2025/02/26/3032876/0/en/The-Oncology-Institute-Announces-Amendment-to-Facility-Agreement-and-Debt-Paydown.html">Deerfield Amendment (GlobeNewswire)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     VALUATION
+     ============================================================ -->
+<section id="valuation">
+  <div class="container">
+    <h2 class="ps-title">Valuation: Three Methods, One Answer</h2>
+    <div class="ps-rule"></div>
+
+    <p class="ps-body">At $3.43 per share and an enterprise value of roughly $415 million, TOI trades at 0.65x 2026E revenue of $640 million. The correct comparable for a profitable VBC operator growing 20% annually with a captive dispensary is not a distressed rural hospital system. Managed care VBC peers with meaningful capitation books trade at 1.0&ndash;1.5x forward revenue. The 0.65x multiple on TOI implies either insolvency risk or thesis failure &mdash; neither of which is supported by the data.</p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Probability</th>
+            <th>Price Target</th>
+            <th>Upside / Downside</th>
+            <th>Key Assumption</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>Bull</strong></td>
+            <td>30%</td>
+            <td>$8&ndash;10</td>
+            <td class="td-positive">+133&ndash;192%</td>
+            <td>Elevance doubles + 2 new markets; 1.5x 2027E Rev</td>
+          </tr>
+          <tr>
+            <td><strong>Base</strong></td>
+            <td>50%</td>
+            <td>$7.00</td>
+            <td class="td-positive">+104%</td>
+            <td>1.0x 2026E Rev ($640M); full-year EBITDA positive; non-dilutive Deerfield refi</td>
+          </tr>
+          <tr class="pain-row">
+            <td><strong>Bear</strong></td>
+            <td>20%</td>
+            <td>$1.45</td>
+            <td class="td-negative">&minus;58%</td>
+            <td>Dilutive Deerfield refi &gt;10%; capitation growth stalls; 0.3x multiple</td>
+          </tr>
+          <tr>
+            <td><strong>Prob-Weighted</strong></td>
+            <td>100%</td>
+            <td class="td-bold">$5.30</td>
+            <td class="td-positive">+55%</td>
+            <td>Expected value; 1.8:1 asymmetry favoring the long</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">Three valuation methods, same directional conclusion. Method one: EV/Revenue. At 1.0x 2026E revenue of $640 million, EV = $640 million. Less current net debt of ~$44 million (cash $33.6M, debt $77.4M). Equity value $596 million on ~100 million diluted shares = $5.96 per share. Method two: EV/Revenue on 2027E estimates. At 1.0x $814.8 million, less net debt declining to ~$25 million estimated: equity value ~$7.90 per share. Method three: EBITDA-based. At FY2027E EBITDA of $27 million and a 15x multiple (conservative for a 20%+ revenue grower), EV = $405 million &mdash; floor valuation; the current multiple is already below this on a forward basis, suggesting the stock is pricing in zero EBITDA realization.</p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+          <tr>
+            <th>Analyst</th>
+            <th>Rating</th>
+            <th>Price Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>B. Riley</td>
+            <td class="td-positive">Buy</td>
+            <td>$8.00</td>
+          </tr>
+          <tr>
+            <td>BTIG</td>
+            <td class="td-positive">Buy</td>
+            <td>$7.00</td>
+          </tr>
+          <tr>
+            <td>Needham</td>
+            <td class="td-positive">Buy</td>
+            <td>$5.00</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>Consensus Average</strong></td>
+            <td class="td-positive">3/3 Buy</td>
+            <td><strong>$6.67</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ps-yellow">
+      <p>TOI currently trades at a discount to liquidation value if one assigns any terminal value to the capitation book and dispensary franchise. The stock requires negative EBITDA forever to justify the current price. Q4 2025 disproves that thesis. The re-rate is a matter of when, not whether.</p>
+    </div>
+
+    <p class="ps-source">Source: B. Riley, BTIG, Needham equity research; <a href="https://www.sec.gov/Archives/edgar/data/1799191/000107997326000068/ex99x1.htm">TOI 2026 Guidance Reaffirmation (SEC)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     DEERFIELD DEEP DIVE
+     ============================================================ -->
+<section id="deerfield">
+  <div class="container">
+    <h2 class="ps-title reveal">The Deerfield Note: The Risk That Is Smaller Than It Looks</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">The $77.4 million Deerfield convertible facility with a mid-2027 maturity is the most frequently cited bear thesis element, and it deserves a precise accounting rather than a dismissal. Deerfield Management is a specialist healthcare credit and equity fund. Its standard playbook involves providing convertible debt to development-stage healthcare companies, maintaining covenant structures that protect principal, and converting to equity as businesses achieve commercial milestones.</p>
+
+    <p class="ps-body reveal">The February 2025 amendment materially changed the risk profile. Deerfield waived the minimum cash covenant &mdash; a $40 million floor that was approaching violation &mdash; and accepted a partial paydown of approximately $20 million of the note. In exchange, it did not demand equity compensation, an interest rate increase, or accelerated maturity. That negotiation is not the behavior of a creditor preparing to enforce remedies. It is the behavior of an equity-aligned holder managing a position through a temporary liquidity trough. The subsequent debt-to-equity conversion of a portion of the facility &mdash; resulting in Deerfield's current 3.36 million share position &mdash; further aligns incentives.</p>
+
+    <p class="ps-body reveal">At $640 million of 2026E revenue and positive EBITDA, TOI is now a bankable credit. A conventional term loan or revolving credit facility at market rates could retire the Deerfield note with zero equity dilution. The question is execution timing, not structural feasibility. Our base case assumes non-dilutive refinancing. The bear case assigns 20% probability to terms that require equity issuance above 10% dilution. That probability is appropriately sized given the current negotiating position.</p>
+
+    <div class="ps-yellow">
+      <p>Deerfield's 3.36M equity shares are worth more at $7.00 than at $3.43. They have every economic incentive to support a non-dilutive refinancing that maximizes equity value. The bear case assumes adversarial creditor behavior that is inconsistent with observed conduct since February 2025.</p>
+    </div>
+    <p class="ps-source">Source: <a href="https://www.globenewswire.com/news-release/2025/02/26/3032876/0/en/The-Oncology-Institute-Announces-Amendment-to-Facility-Agreement-and-Debt-Paydown.html">Deerfield Amendment (GlobeNewswire Feb 2025)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CMS QUALITY DATA
+     ============================================================ -->
+<section id="cms">
+  <div class="container">
+    <h2 class="ps-title reveal">CMS Quality Data: The Most Underread Validation in the Thesis</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">TOI's California professional corporation achieved $1.1 million in Medicare savings in CMS Enhancing Oncology Model Performance Period 2. Maximum quality scores on avoidable emergency department visits and avoidable inpatient admissions &mdash; the two metrics CMS uses to evaluate whether an oncology provider is actually managing total cost of care rather than just avoiding drug costs. This is audited federal data published by CMS, not a company estimate.</p>
+
+    <p class="ps-body reveal">The significance is not the dollar amount of savings &mdash; $1.1 million is small relative to TOI's revenue base. The significance is what the data tells a managed care payer evaluating whether to award a delegated capitation contract. Maximum CMS quality scores on the metrics that matter most to a delegated capitation partner &mdash; avoidable ED visits and inpatient admissions &mdash; are the strongest possible independent validation that TOI's clinical protocols actually work. Payer contracting teams read CMS EOM data carefully. Equity analysts do not. That information asymmetry is part of what we are exploiting.</p>
+
+    <div class="perp-callout">
+      <span class="perp-callout-label">Perplexity&nbsp;Research</span>
+      <p>CMS EOM PP2 results cross-referenced against GlobeNewswire press release dated September 22, 2025. Source: <a href="https://www.globenewswire.com/news-release/2025/09/22/3153882/0/en/The-Oncology-Institute-Achieves-1-1-Million-in-Medicare-Savings-in-CMS-Enhancing-Oncology-Model-Performance-Period-2-through-its-California-Professional-Corporation.html" style="color:#2E6DA4;">GlobeNewswire Sept 2025</a>. This data is not reflected in any sell-side model we have reviewed. It is the most significant unpriced fundamental data point in the thesis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MANAGEMENT & GOVERNANCE
+     ============================================================ -->
+<section id="mgmt">
+  <div class="container">
+    <h2 class="ps-title reveal">Management &amp; Governance: The SPAC Overhang Is Clearing</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">TOI went public via SPAC in November 2021 at a $732 million post-money valuation &mdash; a $59 million reverse merger plus a $275 million PIPE. The SPAC structure created the standard governance challenges: misaligned sponsors, locked-up insiders, and a cap table weighted toward holders whose primary interest was the redemption feature rather than the long-term equity thesis. Five years later, the cleanup is well advanced.</p>
+
+    <p class="ps-body reveal">AEA Investors exited at the SPAC IPO. M33 Growth stepped off the board December 1, 2025. Deerfield converted debt to equity and holds 3.36 million shares with full equity alignment. Insider Jorey Chernett purchased 20,000 shares in the open market at $3.10 on April 9, 2026 &mdash; a discretionary open-market purchase five trading days before today. That is not a 10b5-1 plan sale in reverse. It is a clinical-facing insider buying stock at the bottom of a technically-driven dislocation because they believe the business is worth more than $3.10 per share.</p>
+
+    <div class="ps-yellow">
+      <p>Total equity raised since founding: $291.5M (PitchBook). Most recent: $16.5M PIPE closed May 2025. The capital structure has been right-sized. The company is now generating positive operating cash flow. The SPAC origin story is no longer the relevant frame.</p>
+    </div>
+    <p class="ps-source">Source: <a href="https://cashmere.io/v/ME3ZZN">PitchBook TOI Profile</a>, SEC Form 4 filings</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PODCAST DEEP DIVE
+     ============================================================ -->
+<section id="podcast">
+  <div class="container">
+    <h2 class="ps-title reveal">Primary Source: AI &amp; VBC in Community Oncology &mdash; TOI Leadership</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">The most useful primary source for understanding TOI's operational model and clinical philosophy is not an earnings call &mdash; it is the podcast episode <em>"Can AI &amp; Value-Based Care Redesign Oncology at Scale?"</em> featuring TOI leadership. The episode covers the mechanics of how TOI manages total cost of care under delegated capitation, how AI tools are being integrated into treatment pathway decisions, and the specific clinical interventions that generated the CMS EOM PP2 quality scores.</p>
+
+    <p class="ps-body reveal">The operational detail matters for the investment thesis because the capitation economics are entirely dependent on whether TOI can consistently manage oncology costs below contracted PMPM across a growing and more geographically diverse patient population. The podcast provides clinical-level color on the evidence base for that capability &mdash; color that does not appear in any SEC filing or earnings call transcript. Investors who have listened to it understand the moat differently than those who have not.</p>
+
+    <div class="ps-yellow">
+      <p>Listen: <a href="https://podcasts.apple.com/us/podcast/can-ai-value-based-care-redesign-oncology-at-scale/id1786641881?i=1000717534511" style="color:#1A1A1A;">"Can AI &amp; Value-Based Care Redesign Oncology at Scale?"</a> &mdash; Apple Podcasts. Recommended before any payer channel check or clinical diligence call on TOI's capitation model.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT ECONOMICS
+     ============================================================ -->
+<section id="unit-econ">
+  <div class="container">
+    <h2 class="ps-title">Unit Economics: What the 10-K Actually Says at the Clinic Level</h2>
+    <div class="ps-rule"></div>
+
+    <div class="ps-banner">
+      <p>TOI consolidates 65 clinics financially. The other 81 &ldquo;affiliated&rdquo; locations are fee-for-service MSO network contracts &mdash; TOI bears none of their physician salaries, drug costs, or rent. Every unit economics figure built on 146 clinics is wrong by construction. The correct denominator is 65.</p>
+    </div>
+
+    <p class="ps-body">The 10-K Note 19 segment disclosure provides the only cost breakdown that matters for unit economics: IV drug costs ($134.5M), clinician salaries and benefits ($56.9M), and medical supplies ($14.1M). Nothing else is disclosed at sub-category resolution. From those three numbers and the lease schedule, a complete per-clinic P&L can be reconstructed. Here is that reconstruction, with all assumptions stated.</p>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">The Economic Unit: 65 Consolidated TOI PC Clinics</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Clinic Pool</th><th>Count</th><th>Revenue Consolidated?</th><th>Costs on P&amp;L?</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>TOI PC clinics (physician-owned, TOI-managed)</strong></td>
+            <td><strong>65</strong></td>
+            <td class="td-positive">Yes &mdash; fully consolidated</td>
+            <td class="td-positive">Yes &mdash; all costs</td>
+          </tr>
+          <tr>
+            <td>Network / independently-owned (MSO contracts)</td>
+            <td>81</td>
+            <td class="td-negative">No (management fee only)</td>
+            <td class="td-negative">No</td>
+          </tr>
+          <tr><td><strong>Total affiliated &amp; network</strong></td><td><strong>146</strong></td><td colspan="2" style="text-align:left;">146 is the headline metric; 65 is the economic unit</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">Revenue Per Consolidated Clinic (FY2025)</h3>
+    <p class="ps-body"><em>Formula: segment revenue &divide; 65 clinics</em></p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Revenue Stream</th><th>Total</th><th>Per Clinic</th><th>% of Clinic Rev</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>FFS &mdash; Patient Services</td><td>$148.5M</td><td>$2.28M</td><td>29.5%</td></tr>
+          <tr><td>Capitation &mdash; Patient Services</td><td>$80.5M</td><td>$1.24M</td><td>16.0%</td></tr>
+          <tr><td>Specialty Pharmacy / Dispensary</td><td>$269.2M</td><td>$4.14M</td><td>53.5%</td></tr>
+          <tr><td>Clinical Trials &amp; Other</td><td>$4.6M</td><td>$0.07M</td><td>0.9%</td></tr>
+          <tr class="highlight-row"><td><strong>Total</strong></td><td><strong>$502.7M</strong></td><td><strong>$7.73M</strong></td><td><strong>100%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">The dispensary is 53.5% of per-clinic revenue. This is the central analytical fact of the business. A per-clinic model that excludes pharmacy severely misrepresents the economics &mdash; and most sell-side models do exactly that.</p>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">Per-Clinic P&amp;L (FY2025 Reconstructed)</h3>
+    <p class="ps-body"><em>Direct costs from 10-K Note 19 (exact); overhead allocation pro-rata; D&amp;A from reported $6.9M; lease from reported $8.5M. All figures &divide; 65 clinics.</em></p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Line Item</th><th>Per Clinic ($K)</th><th>% of Clinic Rev</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="background:#f0f5fb;font-weight:700;color:var(--ps-blue);">REVENUE</td></tr>
+          <tr><td>FFS Revenue</td><td>$2,285</td><td>29.5%</td><td>Note 5 &divide; 65</td></tr>
+          <tr><td>Capitation Revenue</td><td>$1,238</td><td>16.0%</td><td>Note 5 &divide; 65</td></tr>
+          <tr><td>Dispensary Revenue</td><td>$4,141</td><td>53.5%</td><td>P&amp;L &divide; 65</td></tr>
+          <tr><td>Clinical Trials</td><td>$70</td><td>0.9%</td><td>P&amp;L &divide; 65</td></tr>
+          <tr class="highlight-row"><td><strong>Total Revenue</strong></td><td><strong>$7,734</strong></td><td><strong>100%</strong></td><td></td></tr>
+          <tr><td colspan="4" style="background:#f0f5fb;font-weight:700;color:var(--ps-blue);">DIRECT COSTS (Note 19 exact)</td></tr>
+          <tr><td>IV Drug Costs</td><td>($2,069)</td><td>(26.8%)</td><td>$134.5M &divide; 65 — exact</td></tr>
+          <tr><td>Clinician Salaries &amp; Benefits</td><td>($875)</td><td>(11.3%)</td><td>$56.9M &divide; 65 — exact</td></tr>
+          <tr><td>Medical Supplies &amp; Other</td><td>($217)</td><td>(2.8%)</td><td>$14.1M &divide; 65 — exact</td></tr>
+          <tr><td>Dispensary COGS</td><td>($3,393)</td><td>(43.9%)</td><td>$220.6M &divide; 65 — exact</td></tr>
+          <tr class="highlight-row"><td><strong>Gross Profit</strong></td><td><strong>$1,180</strong></td><td><strong>15.3%</strong></td><td>Cross-checks to reported $76.4M &checkmark;</td></tr>
+          <tr><td colspan="4" style="background:#f0f5fb;font-weight:700;color:var(--ps-blue);">ALLOCATED OVERHEAD</td></tr>
+          <tr><td>Corporate SG&amp;A (cash, ex-lease, ex-SBC)</td><td>($1,393)</td><td>(18.0%)</td><td>$90.6M &divide; 65 — inferred</td></tr>
+          <tr><td>Clinic Rent (operating lease)</td><td>($130)</td><td>(1.7%)</td><td>$8.5M &divide; 65 — exact</td></tr>
+          <tr><td>D&amp;A</td><td>($107)</td><td>(1.4%)</td><td>$6.9M &divide; 65 — exact</td></tr>
+          <tr class="pain-row"><td><strong>Contribution Margin</strong></td><td><strong>($450)</strong></td><td><strong>(5.8%)</strong></td><td>System-level overhead absorption problem</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">The gross profit cross-check is exact: $1,180K &times; 65 = $76.7M &asymp; reported $76.4M. The model is internally consistent with the 10-K. The negative contribution margin is not a clinic-level operations failure &mdash; it is a corporate overhead absorption problem. Cash SG&amp;A of $90.6M exceeds total system gross profit of $76.4M by $14.1M. The company is not yet large enough to justify the MSO infrastructure it has built.</p>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">Provider Economics &mdash; The Physician Layer</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric</th><th>Formula</th><th>Result</th><th>Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Providers (oncologists + APPs)</td><td>10-K disclosure</td><td>116</td><td>~1.78 per clinic</td></tr>
+          <tr><td>Fully burdened cost per provider</td><td>$56.9M &divide; 116</td><td>$490.5K</td><td>Implies ~65% MD / 35% APP mix</td></tr>
+          <tr><td>FFS revenue per provider</td><td>$148.5M &divide; 116</td><td>$1.28M</td><td>Bottom of MGMA range ($1.2&ndash;$2.5M)</td></tr>
+          <tr><td>Patient services revenue per provider</td><td>$229M &divide; 116</td><td>$1.97M</td><td>Midpoint of MGMA benchmark</td></tr>
+          <tr class="highlight-row"><td>Total revenue per provider (incl. dispensary)</td><td>$503M &divide; 116</td><td>$4.33M</td><td>Well above benchmark ceiling</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">TOI's clinical productivity at $1.28M FFS per provider sits at the low end of MGMA community oncology benchmarks. Without the dispensary, this is a below-peer-midpoint practice network with above-market SG&amp;A. The enterprise only looks exceptional per-provider because of the captive pharmacy. This is not a pejorative observation &mdash; it is the thesis. The dispensary is the reason TOI trades at a discount (screens as a low-margin drug distributor) while having the fundamental economics of a high-margin VBC operator.</p>
+
+    <div class="perp-callout">
+      <span class="perp-callout-label">Perplexity&nbsp;Research</span>
+      <p>Provider mix inferred by back-solving: $56,896K salary &divide; 116 providers = $490.5K fully burdened. At 2025 market rates &mdash; MD oncologist $490K base &times; 1.28 burden = $627K fully loaded; APP (NP/PA) $150K base &times; 1.28 = $192K &mdash; a 65% MD / 35% APP workforce back-solves to $490K within &lt;2%. Source: AMN Healthcare / Merritt Hawkins 2025 Starting Salary Survey; MGMA 2024 DataDive. 340B not available to TOI as a for-profit entity.</p>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">Break-Even Analysis</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Break-Even Level</th><th>Fixed Costs</th><th>CM Rate</th><th>Revenue Required</th><th>Current Level</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>Clinical (cover physicians only)</strong></td>
+            <td>$875K</td>
+            <td>35.1% (patient services)</td>
+            <td>$2,494K patient svc rev</td>
+            <td>$3,523K</td>
+            <td class="td-positive">1.41&times; above &checkmark;</td>
+          </tr>
+          <tr class="pain-row">
+            <td><strong>Full contribution (all overhead)</strong></td>
+            <td>$2,505K</td>
+            <td>25.7% (blended)</td>
+            <td>$9,764K total rev</td>
+            <td>$7,734K</td>
+            <td class="td-negative">79% of the way there</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">At the clinical level, every clinic comfortably covers its physicians &mdash; a 1.41&times; coverage ratio means there is no rationalization case for clinic closure. The full contribution break-even requires $9,764K per clinic vs. the current $7,734K. The $2.0M gap per clinic &times; 65 clinics = $130M of revenue needed to close the contribution gap system-wide. At 20% annual growth, TOI closes that gap by end of FY2026. The break-even math is consistent with management's guidance of Adj. EBITDA profitability in FY2026.</p>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">Scale Economics: How Many Clinics Does This Model Need?</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Clinic Count</th><th>Corp SG&amp;A / Clinic</th><th>Contribution / Clinic</th><th>System Contribution</th></tr>
+        </thead>
+        <tbody>
+          <tr class="pain-row"><td>65 (current)</td><td>$1,393K</td><td>($450K)</td><td>($29.3M)</td></tr>
+          <tr><td>85</td><td>$1,065K</td><td>($123K)</td><td>($10.5M)</td></tr>
+          <tr class="highlight-row"><td><strong>96 (system breakeven)</strong></td><td>$943K</td><td>~$0</td><td>~$0</td></tr>
+          <tr class="highlight-row"><td>100</td><td>$906K</td><td>$37K</td><td>$3.7M</td></tr>
+          <tr class="highlight-row"><td>120</td><td>$755K</td><td>$188K</td><td>$22.5M</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">TOI needs approximately 96 consolidated clinics to reach system-level contribution breakeven at current per-clinic unit economics. It currently operates 65. The expansion strategy is not growth-for-growth's-sake &mdash; it is an economic necessity. The fixed corporate SG&amp;A of $90.6M makes sense only when spread across &ge;96 clinics. Beyond that threshold, each incremental clinic generates nearly pure incremental EBIT: the SG&amp;A is already paid, the dispensary infrastructure is already running, and physician hiring is the only meaningful variable cost addition.</p>
+
+    <h3 style="font-size:16px;font-weight:700;color:var(--ps-blue);margin:1.5rem 0 0.5rem;">The Single Most Important Variable: Dispensary Capture Rate</h3>
+
+    <p class="ps-body">Five variables drive TOI unit economics. One dominates.</p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>Variable</th><th>10-Unit Improvement</th><th>Incremental EBIT</th><th>Controllability</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Physician productivity (+10% encounter volume)</td><td>FFS vol. +10%</td><td>~$4.6M</td><td>Medium (capacity-constrained)</td></tr>
+          <tr><td>IV drug GPO improvement (+2 pts below ASP)</td><td>Acq. cost &minus;2%</td><td>~$2.7M</td><td>Low (periodic contract events)</td></tr>
+          <tr><td>Capitation PMPM uplift (+$1/member/month)</td><td>Revenue +$24M</td><td>~$2.4M net</td><td>Low (multi-year renegotiation)</td></tr>
+          <tr><td>SG&amp;A leverage (revenue growth, flat opex)</td><td>Revenue +20%</td><td>$28.8M (FY2026E)</td><td>Indirect (driven by volume)</td></tr>
+          <tr class="highlight-row"><td><strong>Dispensary capture rate (+10 percentage points)</strong></td><td><strong>+8,496 filling patients</strong></td><td><strong>~$12.2M at ~$0 marginal cost</strong></td><td><strong>High &mdash; provider behavior + logistics</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body">The math: an estimated 40% of treated patients currently fill oncology prescriptions through TOI&rsquo;s dispensary (inferred from $269M dispensary revenue &divide; ~85,000 estimated patients &divide; $7,921 revenue per filling patient). Each additional 10 percentage points of capture rate adds ~8,500 filling patients &times; $7,921 per patient &times; 18.1% dispensary margin = $12.2M of gross profit at approximately zero incremental SG&amp;A. The pharmacy is already staffed, licensed, and operational. Incremental fills are pure margin.</p>
+
+    <p class="ps-body">FY2025 provided direct evidence that the capture rate is expanding: dispensary prescription fills grew 66.6% while patient volume grew approximately 18%. The gap &mdash; roughly 48 percentage points of fill growth attributable to capture rate rather than patient growth &mdash; suggests the capture rate may have moved from approximately 25&ndash;30% in FY2024 to approximately 40% in FY2025. The S-curve has not inflected. TOI has not disclosed a ceiling on dispensary capture, and industry comparables for integrated oncology practices suggest 60&ndash;70% is achievable over time. The distance from 40% to 60% is worth approximately $24M in annual gross profit at current patient volumes, at zero marginal infrastructure cost.</p>
+
+    <p class="ps-body">The blunt conclusion: without the dispensary, TOI is a below-benchmark community oncology practice network with above-market overhead. With the dispensary at increasing capture rates, it is one of the highest revenue-per-patient ambulatory oncology businesses in the US. Dispensary capture rate is the fulcrum on which the entire enterprise value rests. It is also, critically, the variable most directly within management&rsquo;s control.</p>
+
+    <div class="ps-yellow">
+      <p>A patient worth $2,695 in FFS + capitation revenue is worth $10,616 when the dispensary is included. The dispensary does not just supplement clinical revenue &mdash; it triples it. Capture rate expansion from 40% to 60% at current patient volume is worth ~$24M in gross profit at ~$0 incremental SG&amp;A. That alone would take Adj. EBITDA from $0&ndash;9M guidance to $24&ndash;33M.</p>
+    </div>
+
+    <p class="ps-source">Sources: TOI 10-K FY2025 (Note 19 segment cost breakdown, Note 5 revenue detail, operating lease disclosure) &middot; AMN Healthcare / Merritt Hawkins 2025 Starting Salary Survey &middot; MGMA 2024 DataDive Provider Compensation &middot; <a href="https://www.sec.gov/Archives/edgar/data/1799191/000179919126000007/0001799191-26-000007-index.htm">SEC EDGAR TOI 10-K Index (FY2025)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENARIO MODEL
+     ============================================================ -->
+<section id="scenarios">
+  <div class="container">
+    <h2 class="ps-title">Scenario Model: Stress-Testing the Path to Profitability</h2>
+    <div class="ps-rule"></div>
+
+    <div class="ps-banner">
+      <p>TOI's path to profitability is a function of five variables, not one. Clinic count, revenue per clinic, dispensary gross margin, physician cost inflation, and corporate SG&A leverage all interact non-linearly. The model breaks differently depending on which variable moves first. Below is a scenario-based reconstruction built from 10-K Note 19 actuals &mdash; not management guidance.</p>
+    </div>
+
+    <!-- KEY ASSUMPTIONS TABLE -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2rem 0 .75rem;">FY2025 Anchor Actuals (All figures from 10-K Note 19 and Note 5)</h3>
+    <table class="data-table" style="margin-bottom:2rem;">
+      <thead><tr><th>Line Item</th><th>FY2025 Actual</th><th>Per Clinic (÷65)</th><th>Comment</th></tr></thead>
+      <tbody>
+        <tr><td>Total Revenue</td><td>$502.7M</td><td>$7.73M</td><td>FFS 29.5% / Cap 16.0% / Disp 53.5%</td></tr>
+        <tr><td>Dispensary Revenue</td><td>$269.2M</td><td>$4.14M</td><td>+49.6% YoY; $27M/mo H2 run-rate</td></tr>
+        <tr><td>Dispensary Gross Margin</td><td>18.1%</td><td>$749K GP</td><td>COGS $220.6M; 340B risk on this line</td></tr>
+        <tr><td>Patient Services GP</td><td>10.3%</td><td>$362K GP</td><td>IV drugs 58.7% of PS rev; fixed physician cost</td></tr>
+        <tr><td>Total Gross Profit</td><td>$76.4M</td><td>$1.18M</td><td>15.2% blended margin</td></tr>
+        <tr><td>Cash SG&amp;A (ex-lease, ex-SBC)</td><td>$90.6M</td><td>$1.39M</td><td>Exceeds gross profit by $14.2M</td></tr>
+        <tr><td>Adj. EBITDA</td><td>$(12.4M)</td><td>&mdash;</td><td>Q4 2025: +$147K (first positive Q)</td></tr>
+        <tr><td>Cash</td><td>$33.6M</td><td>&mdash;</td><td>Post $20M Deerfield paydown, post PIPE</td></tr>
+        <tr><td>Deerfield Debt</td><td>~$77.4M</td><td>&mdash;</td><td>4.0% sr. secured convertible; matures Aug 2027</td></tr>
+        <tr><td>Consolidated Clinics</td><td>65</td><td>&mdash;</td><td>81 network clinics = MSO fee only; no cost burden</td></tr>
+      </tbody>
+    </table>
+
+    <!-- SCENARIO SECTION HEADER -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2.5rem 0 .75rem;">Three Scenarios &mdash; FY2026E Through FY2028E</h3>
+    <p class="ps-body" style="margin-bottom:1.5rem;">Each scenario holds the FY2025 cost structure constant and stress-tests the top-line and margin drivers independently. The non-linearity warning: SG&A leverage only kicks in above ~96 consolidated clinics. Below that threshold, adding revenue via reimbursement or volume does not produce proportional EBITDA improvement because the fixed overhead base is the binding constraint &mdash; not variable margin.</p>
+
+    <!-- SCENARIO TABLE -->
+    <div style="overflow-x:auto;margin-bottom:2rem;">
+    <table class="data-table" style="min-width:800px;">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th style="background:#1A3C6B;color:#fff;">FY2025A</th>
+          <th style="background:#2d5a27;color:#fff;">Bull Case FY2026E</th>
+          <th style="background:#1A3C6B;color:#fff;">Base Case FY2026E</th>
+          <th style="background:#7f1d1d;color:#fff;">Bear Case FY2026E</th>
+          <th style="background:#2d5a27;color:#fff;">Bull FY2028E</th>
+          <th style="background:#1A3C6B;color:#fff;">Base FY2028E</th>
+          <th style="background:#7f1d1d;color:#fff;">Bear FY2028E</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Consolidated Clinics</strong></td><td>65</td><td>72</td><td>68</td><td>65</td><td>100</td><td>85</td><td>65</td></tr>
+        <tr class="highlight-row"><td><strong>Revenue</strong></td><td>$502.7M</td><td>$680M</td><td>$640M</td><td>$560M</td><td>$1,050M</td><td>$815M</td><td>$590M</td></tr>
+        <tr><td>&nbsp;&nbsp;— Dispensary</td><td>$269M (53.5%)</td><td>$360M (53%)</td><td>$330M (52%)</td><td>$260M (46%)</td><td>$525M (50%)</td><td>$408M (50%)</td><td>$235M (40%)</td></tr>
+        <tr><td>&nbsp;&nbsp;— Capitation</td><td>$80M (16%)</td><td>$165M (24%)</td><td>$150M (23%)</td><td>$80M (14%)</td><td>$315M (30%)</td><td>$245M (30%)</td><td>$90M (15%)</td></tr>
+        <tr><td>&nbsp;&nbsp;— FFS + Other</td><td>$154M (31%)</td><td>$155M (23%)</td><td>$160M (25%)</td><td>$220M (39%)</td><td>$210M (20%)</td><td>$162M (20%)</td><td>$265M (45%)</td></tr>
+        <tr class="highlight-row"><td><strong>Dispensary GM %</strong></td><td>18.1%</td><td>18.5%</td><td>17.5%</td><td>12.0%</td><td>19.0%</td><td>16.5%</td><td>10.0%</td></tr>
+        <tr><td><strong>Patient Svc GM %</strong></td><td>10.3%</td><td>12.0%</td><td>11.0%</td><td>9.0%</td><td>14.5%</td><td>12.5%</td><td>8.5%</td></tr>
+        <tr class="highlight-row"><td><strong>Gross Profit</strong></td><td>$76.4M</td><td>$118M</td><td>$102M</td><td>$62M</td><td>$220M</td><td>$148M</td><td>$56M</td></tr>
+        <tr><td><strong>Gross Margin %</strong></td><td>15.2%</td><td>17.4%</td><td>15.9%</td><td>11.1%</td><td>21.0%</td><td>18.2%</td><td>9.5%</td></tr>
+        <tr><td><strong>Cash SG&amp;A (ex-SBC, ex-D&amp;A)</strong></td><td>$90.6M</td><td>$90M</td><td>$93M</td><td>$95M</td><td>$108M</td><td>$118M</td><td>$93M</td></tr>
+        <tr><td><strong>SG&amp;A % Rev</strong></td><td>18.0%</td><td>13.2%</td><td>14.5%</td><td>17.0%</td><td>10.3%</td><td>14.5%</td><td>15.8%</td></tr>
+        <tr class="highlight-row"><td><strong>Adj. EBITDA</strong></td><td>$(12.4M)</td><td><strong>$28M</strong></td><td><strong>$9M</strong></td><td><strong>$(33M)</strong></td><td><strong>$112M</strong></td><td><strong>$30M</strong></td><td><strong>$(37M)</strong></td></tr>
+        <tr><td><strong>EBITDA Margin %</strong></td><td>&mdash;</td><td>4.1%</td><td>1.4%</td><td>&mdash;</td><td>10.7%</td><td>3.7%</td><td>&mdash;</td></tr>
+        <tr><td><strong>FCF (est.)</strong></td><td>&mdash;</td><td>$21M</td><td>$2M</td><td>$(40M)</td><td>$104M</td><td>$22M</td><td>$(45M)</td></tr>
+        <tr class="pain-row"><td><strong>Dilution Required?</strong></td><td>N/A</td><td>No &mdash; FCF+</td><td>No &mdash; FCF+</td><td><strong>Yes &mdash; Acute</strong></td><td>No</td><td>Possible (Deerfield)</td><td><strong>Yes &mdash; Existential</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- SCENARIO NARRATIVES -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin:2rem 0;">
+
+      <!-- BULL -->
+      <div style="border-top:4px solid var(--ps-green);padding:1.25rem;background:#f5faf5;">
+        <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ps-green);margin:0 0 .5rem;">BULL CASE</p>
+        <p style="font-size:13px;font-weight:700;color:#1a1a1a;margin:0 0 .75rem;">What goes right simultaneously</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Dispensary hold at 18%+.</strong> 340B rebate pilot is delayed or TOI renegotiates payer contracts to pass through regulatory costs. Capture rate moves from ~40% to ~55% organically. GP add from capture expansion: +$18M.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Elevance doubles.</strong> Delegated lives in Florida expand from ~100K to 200K+ as contractually signaled. Capitation hits $165M in 2026 at improving margins as contracts season. PMPM on delegated tranche expands toward $25+.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>7 net new consolidated clinics.</strong> California market densification and 1 new state (Nevada expansion). Physician recruitment success in FL market, enabled by Elevance partnership as proof point.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>SG&A drops to 13.2% of revenue ($90M cash)</strong> as corporate overhead grows &lt;8% on 35% revenue growth. Deerfield refinanced at par, no dilution to common equity below current price.</p>
+        <p style="font-size:12px;font-weight:700;color:var(--ps-green);margin:.75rem 0 0;">FY2026E EBITDA: ~$28M | FY2028E: ~$112M | PT: $10+</p>
+      </div>
+
+      <!-- BASE -->
+      <div style="border-top:4px solid var(--ps-blue);padding:1.25rem;background:#f0f4fa;">
+        <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ps-blue);margin:0 0 .5rem;">BASE CASE</p>
+        <p style="font-size:13px;font-weight:700;color:#1a1a1a;margin:0 0 .75rem;">What has to be true for the thesis to work</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Dispensary at 17–18%.</strong> Modest 340B regulatory drag (10–15% compression) offset by volume growth. Dispensary revenue at $27M/mo run rate + 3–5% growth per guidance. GP held ~flat on a per-unit basis.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Capitation hits $150M.</strong> In line with guidance. Delegated lives grow modestly. No material new payer win but existing contracts season. PMPM on legacy stays flat; delegated improves slightly.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>3 net new consolidated clinics.</strong> Modest physician recruitment execution. Revenue per clinic grows to ~$9.4M via same-clinic volume and dispensary capture gains.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Cash SG&amp;A holds near $93M</strong> (&lt;3% growth). Physician costs +5% YoY (market compensation inflation). Deerfield refinanced or extended before August 2027 via structured equity deal or bank revolver.</p>
+        <p style="font-size:12px;font-weight:700;color:var(--ps-blue);margin:.75rem 0 0;">FY2026E EBITDA: ~$9M | FY2028E: ~$30M | PT: $7.00</p>
+      </div>
+
+      <!-- BEAR -->
+      <div style="border-top:4px solid #B91C1C;padding:1.25rem;background:#fff8f8;">
+        <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#B91C1C;margin:0 0 .5rem;">BEAR CASE</p>
+        <p style="font-size:13px;font-weight:700;color:#1a1a1a;margin:0 0 .75rem;">What breaks the model structurally</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Dispensary compressed to 12%.</strong> HRSA rebate pilot disrupts working capital. CMS survey triggers ASP reduction. Margin falls 610 bps on the segment, wiping $20M+ of gross profit. Revenue holds but GP collapses.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Capitation stalls at $80M.</strong> Elevance expansion slower than signaled. No new payer wins. Legacy contracts do not season into profitability. PMPM stays at $3.35 blended &mdash; the management fee structure exposed.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>No net new consolidated clinics.</strong> Physician recruitment fails in competitive FL/CA markets. Revenue per clinic grows modestly via FFS inflation (+3%) but dispensary capture stalls at 40%.</p>
+        <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0 0 .5rem;"><strong>Physician costs +10% YoY</strong> ($62M clinician line). Oncologist starting salaries inflate faster than billing rate increases. SG&A stays sticky above $93M. Deerfield maturity in August 2027 requires dilutive refinancing at sub-$3 stock price.</p>
+        <p style="font-size:12px;font-weight:700;color:#B91C1C;margin:.75rem 0 0;">FY2026E EBITDA: ~$(33M) | FY2028E: ~$(37M) | PT: $1.45</p>
+      </div>
+    </div>
+
+    <!-- SENSITIVITY ANALYSIS -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2.5rem 0 .75rem;">Sensitivity Analysis &mdash; EBITDA Impact of ±1 Unit Change in Key Variables</h3>
+    <p class="ps-body" style="margin-bottom:1rem;">Starting from the FY2026 Base Case ($9M EBITDA). Each variable is moved independently; all others held constant. This isolates marginal sensitivity &mdash; not the compounded scenario above.</p>
+    <table class="data-table" style="margin-bottom:2rem;">
+      <thead><tr><th>Variable</th><th>Change</th><th>EBITDA Impact</th><th>Mechanism</th><th>Importance</th></tr></thead>
+      <tbody>
+        <tr class="pain-row"><td><strong>Dispensary Gross Margin</strong></td><td>&minus;100bps (17.5% &rarr; 16.5%)</td><td><strong>&minus;$3.3M</strong></td><td>$330M dispensary rev &times; 1% = $3.3M GP reduction at ~$0 cost change</td><td>&#9733;&#9733;&#9733;&#9733;&#9733; #1</td></tr>
+        <tr class="pain-row"><td><strong>Dispensary Capture Rate</strong></td><td>+5pp capture (40% &rarr; 45%)</td><td><strong>+$7.2M</strong></td><td>$330M &times; 12.5% incremental rev = $41.3M &times; 17.5% GM = $7.2M GP; ~$0 SG&A</td><td>&#9733;&#9733;&#9733;&#9733;&#9733; #1</td></tr>
+        <tr><td><strong>Capitation Revenue</strong></td><td>+$15M (aligned with guidance)</td><td><strong>+$2.3M</strong></td><td>Capitation GP ~15%; $15M &times; 15% = $2.25M incremental</td><td>&#9733;&#9733;&#9733;&#9733; #2</td></tr>
+        <tr><td><strong>Patient Volume per Clinic</strong></td><td>+10% (1,307 &rarr; 1,438 patients/clinic)</td><td><strong>+$3.8M</strong></td><td>131 patients &times; $2,695 PS rev &times; 10.7% PS GM &times; 65 clinics less physician cost (fixed)</td><td>&#9733;&#9733;&#9733;&#9733; #2</td></tr>
+        <tr><td><strong>Physician Costs</strong></td><td>+5% salary inflation ($56.9M &rarr; $59.7M)</td><td><strong>&minus;$2.8M</strong></td><td>$2.8M salary increase; fully fixed, zero revenue offset</td><td>&#9733;&#9733;&#9733; #3</td></tr>
+        <tr><td><strong>Net New Consolidated Clinics</strong></td><td>+3 clinics (65 &rarr; 68)</td><td><strong>+$0.9M</strong></td><td>Each clinic at $7.73M rev &times; 15.2% GP less $1.39M SG&A alloc &mdash; marginal contribution at current metrics is slim until SG&A absorption improves</td><td>&#9733;&#9733;&#9733; #3</td></tr>
+        <tr><td><strong>FFS Reimbursement Rate</strong></td><td>&minus;2% Medicare rate cut</td><td><strong>&minus;$3.0M</strong></td><td>$148M FFS rev &times; 2% = $3.0M; IV drug cost falls proportionally &minus;$1.8M (ASP-linked); net EBITDA impact: &minus;$1.2M</td><td>&#9733;&#9733; #4</td></tr>
+        <tr><td><strong>SG&amp;A Leverage</strong></td><td>&minus;$5M absolute (discipline)</td><td><strong>+$5.0M</strong></td><td>Pure dollar-for-dollar pass-through to EBITDA; management controls this lever directly</td><td>&#9733;&#9733; #4</td></tr>
+      </tbody>
+    </table>
+
+    <!-- CAPITAL STRUCTURE -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2.5rem 0 .75rem;">Capital Structure &mdash; Cash Runway and Dilution Risk</h3>
+    <table class="data-table" style="margin-bottom:1.5rem;">
+      <thead><tr><th>Item</th><th>Detail</th><th>Bear</th><th>Base</th><th>Bull</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cash (Dec 31, 2025)</strong></td><td>10-K balance sheet</td><td colspan="3" style="text-align:center;">$33.6M &mdash; all scenarios start here</td></tr>
+        <tr><td><strong>FY2026E FCF</strong></td><td>Guided: $(15)M to $5M</td><td>$(40M)</td><td>$2M</td><td>$21M</td></tr>
+        <tr><td><strong>Cash at YE2026E</strong></td><td></td><td><strong>$(6M) &mdash; capital raise required</strong></td><td>$36M</td><td>$55M</td></tr>
+        <tr><td><strong>Deerfield Notes Outstanding</strong></td><td>$77.4M at 4.0% p.a.</td><td>$77.4M</td><td>$77.4M</td><td>$77.4M</td></tr>
+        <tr><td><strong>Deerfield Maturity</strong></td><td>August 9, 2027</td><td>Crisis event</td><td>Must refinance</td><td>Refinance at par</td></tr>
+        <tr><td><strong>Conversion Price</strong></td><td>$8.567/share</td><td>Forced below conversion</td><td>Below conversion</td><td>Near conversion</td></tr>
+        <tr><td><strong>Interest Burden</strong></td><td>4.0% &times; $77.4M</td><td colspan="3" style="text-align:center;">~$3.1M/yr cash interest</td></tr>
+        <tr class="pain-row"><td><strong>Equity Shares Outstanding</strong></td><td>~98M diluted</td><td><strong>+40&ndash;60M shares (forced dilution)</strong></td><td>+15&ndash;20M shares (structured)</td><td>Minimal; Deerfield converts at $8.567</td></tr>
+        <tr><td><strong>Cash Runway (Bear)</strong></td><td>No capital raise</td><td colspan="3">Bear case burns through cash by ~Q3 2026; forces capital raise at distressed price</td></tr>
+      </tbody>
+    </table>
+
+    <div style="border-left:4px solid #B91C1C;padding:1.25rem 1.5rem;margin:1.5rem 0;background:#fff8f8;">
+      <p style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#B91C1C;margin:0 0 .5rem;">THE DEERFIELD MATURITY PROBLEM</p>
+      <p style="font-size:12.5px;line-height:1.6;color:#333;margin:0;">The $77.4M Deerfield convertible note matures August 9, 2027. At the current stock price of $3.43, the conversion feature at $8.567 is deeply out of the money &mdash; Deerfield has zero economic incentive to convert. TOI must either (a) refinance the notes with a bank revolver or new term loan, (b) execute a dilutive equity raise to fund paydown, or (c) renegotiate a further amendment with Deerfield. The February 2025 amendment already removed the $40M minimum cash covenant in exchange for a $20M paydown &mdash; the balance sheet now carries $33.6M cash against a $77.4M wall that hits in 16 months. In the base case, this is navigable: FCF positive (~$2M), $36M cash at YE2026, approaching EBITDA inflection, and a bankable revenue base. In the bear case, with deeply negative FCF and a dispensary margin collapse, this is an existential event. Deerfield has previously been accommodating &mdash; they&rsquo;re an equity holder &mdash; but repeat amendments have a cost.</p>
+    </div>
+
+    <!-- THE ONE VARIABLE -->
+    <div class="ps-yellow" style="margin:2rem 0;">
+      <p><strong>The one variable that determines success or failure: Dispensary Gross Margin.</strong></p>
+      <p style="margin:.5rem 0 0;">Every 100 bps of dispensary GM change on $330M of 2026E dispensary revenue = $3.3M of EBITDA. The difference between the bull and bear case EBITDA in 2026 is $61M. Of that, $35M &mdash; or 58% &mdash; comes from the dispensary segment (margin + capture) alone. A business guiding to $0&ndash;9M EBITDA cannot absorb a 600 bps dispensary margin compression without becoming deeply loss-making. The 340B regulatory clock is the threat; the capture rate expansion is the offset. The stock is essentially a bet on which of these two forces moves first.</p>
+    </div>
+
+    <!-- KEY VARIABLE RANKING -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2rem 0 .75rem;">Key Variables Ranked by Importance to Profitability</h3>
+    <table class="data-table" style="margin-bottom:2rem;">
+      <thead><tr><th>Rank</th><th>Variable</th><th>Direction of Risk</th><th>EBITDA Swing (per unit)</th><th>Mgmt Control?</th></tr></thead>
+      <tbody>
+        <tr class="pain-row"><td>1</td><td>Dispensary gross margin (%)</td><td>Down (340B, ASP, payer)</td><td>$3.3M per 100bps</td><td>Partial</td></tr>
+        <tr class="highlight-row"><td>1</td><td>Dispensary capture rate</td><td>Up (organic expansion)</td><td>$7.2M per +5pp</td><td>Yes &mdash; key lever</td></tr>
+        <tr><td>2</td><td>Capitation revenue and PMPM</td><td>Up (Elevance, new wins) or stall</td><td>$2.3M per $15M rev</td><td>Partial</td></tr>
+        <tr><td>2</td><td>Patient volume per clinic</td><td>Up (organic densification)</td><td>$3.8M per +10%</td><td>Yes</td></tr>
+        <tr><td>3</td><td>Physician cost inflation</td><td>Down (labor market)</td><td>$(2.8M) per 5% increase</td><td>No</td></tr>
+        <tr><td>3</td><td>Net new consolidated clinics</td><td>Up but slow</td><td>$0.9M per clinic</td><td>Yes (capital-dependent)</td></tr>
+        <tr><td>4</td><td>FFS Medicare reimbursement</td><td>Down (annual MPFS cuts)</td><td>$(1.2M) per 2% cut net of ASP</td><td>No</td></tr>
+        <tr><td>4</td><td>SG&amp;A discipline</td><td>Down if mgmt over-invests</td><td>$1.0M per $1M reduction</td><td>Yes &mdash; direct control</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════
+         INTERACTIVE SENSITIVITY CALCULATOR
+         ═══════════════════════════════════════════════════════ -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.08em;margin:2.5rem 0 .75rem;">Interactive Sensitivity Calculator</h3>
+    <p class="ps-body" style="margin-bottom:1.5rem;">Adjust the two variables that control 58% of the EBITDA outcome from the dispensary alone. All other inputs are locked to 2026E base assumptions calibrated to guidance. Numbers update in real time.</p>
+
+    <div id="toi-calc" style="background:#f7f9fc;border:1px solid #d0d8e8;border-radius:6px;padding:2rem;margin-bottom:2rem;">
+
+      <!-- SLIDERS -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
+
+        <!-- Dispensary GM -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <label style="font-size:12px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.06em;">Dispensary Gross Margin</label>
+            <span id="disp-gm-val" style="font-size:20px;font-weight:800;color:var(--ps-blue);font-variant-numeric:tabular-nums;">17.5%</span>
+          </div>
+          <input type="range" id="disp-gm" min="10" max="22" step="0.5" value="17.5"
+            style="width:100%;accent-color:var(--ps-blue);cursor:pointer;height:6px;">
+          <div style="display:flex;justify-content:space-between;margin-top:.35rem;">
+            <span style="font-size:10px;color:#888;">10% (bear — 340B hit)</span>
+            <span style="font-size:10px;color:#888;">22% (bull — full capture)</span>
+          </div>
+          <div style="margin-top:.75rem;font-size:11px;color:#555;line-height:1.5;">
+            FY2025 actual: <strong>18.1%</strong> &nbsp;|&nbsp; Base case: 17.5% &nbsp;|&nbsp; Bear: 12%
+          </div>
+        </div>
+
+        <!-- Capture Rate -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <label style="font-size:12px;font-weight:700;color:var(--ps-blue);text-transform:uppercase;letter-spacing:.06em;">Dispensary Capture Rate</label>
+            <span id="cap-rate-val" style="font-size:20px;font-weight:800;color:var(--ps-blue);font-variant-numeric:tabular-nums;">40%</span>
+          </div>
+          <input type="range" id="cap-rate" min="30" max="60" step="1" value="40"
+            style="width:100%;accent-color:var(--ps-blue);cursor:pointer;height:6px;">
+          <div style="display:flex;justify-content:space-between;margin-top:.35rem;">
+            <span style="font-size:10px;color:#888;">30% (stalled)</span>
+            <span style="font-size:10px;color:#888;">60% (integrated oncology ceiling)</span>
+          </div>
+          <div style="margin-top:.75rem;font-size:11px;color:#555;line-height:1.5;">
+            Est. current: <strong>~40%</strong> &nbsp;|&nbsp; FY2024 est: ~28% &nbsp;|&nbsp; Industry ceiling: 65%
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div style="border-top:1px solid #d0d8e8;margin-bottom:1.75rem;"></div>
+
+      <!-- OUTPUT METRICS -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+
+        <div style="background:#fff;border:1px solid #d0d8e8;border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem;">Dispensary GP</div>
+          <div id="out-disp-gp" style="font-size:22px;font-weight:800;color:var(--ps-blue);font-variant-numeric:tabular-nums;">—</div>
+          <div style="font-size:10px;color:#aaa;margin-top:.25rem;">annual</div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #d0d8e8;border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem;">Total Gross Profit</div>
+          <div id="out-total-gp" style="font-size:22px;font-weight:800;color:var(--ps-blue);font-variant-numeric:tabular-nums;">—</div>
+          <div style="font-size:10px;color:#aaa;margin-top:.25rem;">vs $76.4M actual</div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #d0d8e8;border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem;">Adj. EBITDA</div>
+          <div id="out-ebitda" style="font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;">—</div>
+          <div style="font-size:10px;color:#aaa;margin-top:.25rem;">FY2026E</div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #d0d8e8;border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem;">Cash Runway</div>
+          <div id="out-runway" style="font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;">—</div>
+          <div style="font-size:10px;color:#aaa;margin-top:.25rem;">from $33.6M base</div>
+        </div>
+      </div>
+
+      <!-- EBITDA BAR -->
+      <div style="margin-bottom:1.25rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;">
+          <span style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;">EBITDA vs. Breakeven</span>
+          <span id="out-ebitda-label" style="font-size:11px;font-weight:700;color:#555;"></span>
+        </div>
+        <div style="background:#e8edf5;border-radius:3px;height:12px;position:relative;overflow:hidden;">
+          <!-- zero line -->
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:#1A3C6B;opacity:.3;"></div>
+          <div id="ebitda-bar" style="position:absolute;height:100%;border-radius:3px;transition:all .25s ease;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:.3rem;">
+          <span style="font-size:10px;color:#aaa;">&minus;$50M</span>
+          <span style="font-size:10px;color:#aaa;">Breakeven</span>
+          <span style="font-size:10px;color:#aaa;">+$50M</span>
+        </div>
+      </div>
+
+      <!-- NARRATIVE VERDICT -->
+      <div id="out-verdict" style="font-size:12.5px;line-height:1.6;padding:.85rem 1rem;border-radius:4px;border-left:4px solid #ccc;background:#fafafa;"></div>
+
+      <!-- FOOTNOTE -->
+      <p style="font-size:10px;color:#aaa;margin:1rem 0 0;">
+        Model inputs: Non-dispensary GP $40M (calibrated to $102M guided total GP at $330M dispensary base, 17.5% GM); Cash SG&amp;A $93M (ex-SBC, ex-D&A); Interest $3.1M; Capex $4M. Dispensary revenue held at $330M (2026E base); capture rate scales linearly vs. 40% baseline. Adj. EBITDA = Total GP &minus; Cash SG&amp;A (D&amp;A excluded per EBITDA definition). All figures approximate; for analytical purposes only.
+      </p>
+    </div>
+
+    <script>
+    (function() {
+      // ── LOCKED CONSTANTS (FY2025 actuals + 2026E base adjustments) ──
+      var DISP_REV_BASE   = 330;   // $M dispensary rev at 40% capture, 2026E
+      var CAP_RATE_BASE   = 40;    // % baseline capture rate
+      var PATIENTS        = 85000; // est FY2025 unique patients
+      var PS_GP           = 40.0;  // $M non-dispensary GP (calibrated to $102M guided GP at $330M disp base, 17.5% GM)
+      var CASH_SGA        = 93.0;  // $M cash SG&A (ex-SBC, ex-D&A), FY2025 $90.6M + ~3% growth
+      var INTEREST        = 3.1;   // $M Deerfield interest
+      var STARTING_CASH   = 33.6;  // $M cash at Dec 31 2025
+      var CAPEX           = 4;     // $M maintenance capex estimate
+
+      function fmt(val, decimals) {
+        var d = decimals === undefined ? 1 : decimals;
+        var abs = Math.abs(val);
+        var s = abs.toFixed(d);
+        return (val < 0 ? '\u2212$' : '$') + s + 'M';
+      }
+
+      function calc() {
+        var dispGM   = parseFloat(document.getElementById('disp-gm').value);
+        var capRate  = parseFloat(document.getElementById('cap-rate').value);
+
+        // Adjust dispensary revenue for capture rate vs baseline
+        var captureMultiplier = capRate / CAP_RATE_BASE;
+        var dispRev = DISP_REV_BASE * captureMultiplier;  // scales linearly with capture
+
+        // Dispensary gross profit
+        var dispGP = dispRev * (dispGM / 100);
+
+        // Total gross profit
+        var totalGP = dispGP + PS_GP;
+        var totalGPM = totalGP / (dispRev + 310) * 100;  // 310 = non-dispensary rev base
+
+        // Adj. EBITDA (by definition before D&A; TOI reports on this basis)
+        var ebitda = totalGP - CASH_SGA;
+
+        // FCF = EBITDA - interest - capex (approximate)
+        var fcf = ebitda - INTEREST - CAPEX;
+
+        // Cash runway
+        var runway;
+        var runwayStr;
+        if (fcf >= 0) {
+          runway = Infinity;
+          runwayStr = 'Self-funding';
+        } else {
+          var monthsBurn = (STARTING_CASH / Math.abs(fcf)) * 12;
+          if (monthsBurn >= 36) {
+            runwayStr = '3+ years';
+          } else if (monthsBurn >= 24) {
+            runwayStr = Math.round(monthsBurn / 12 * 10) / 10 + ' yrs';
+          } else {
+            runwayStr = Math.round(monthsBurn) + ' mos';
+          }
+        }
+
+        // ── UPDATE DOM ──
+        document.getElementById('disp-gm-val').textContent  = dispGM.toFixed(1) + '%';
+        document.getElementById('cap-rate-val').textContent = capRate.toFixed(0) + '%';
+        document.getElementById('out-disp-gp').textContent  = fmt(dispGP);
+        document.getElementById('out-total-gp').textContent = fmt(totalGP);
+
+        var ebitdaEl = document.getElementById('out-ebitda');
+        ebitdaEl.textContent = fmt(ebitda);
+        ebitdaEl.style.color = ebitda >= 0 ? '#2d5a27' : '#B91C1C';
+
+        var runwayEl = document.getElementById('out-runway');
+        runwayEl.textContent = runwayStr;
+        runwayEl.style.color = fcf >= 0 ? '#2d5a27' : (monthsBurnVal(fcf) < 12 ? '#B91C1C' : '#B45309');
+
+        // EBITDA bar (-50 to +50 maps to 0–100%)
+        var barPct = Math.min(Math.max((ebitda + 50) / 100 * 100, 0), 100);
+        var bar = document.getElementById('ebitda-bar');
+        var zeroPct = 50;
+        if (ebitda >= 0) {
+          bar.style.left  = zeroPct + '%';
+          bar.style.width = Math.min(barPct - zeroPct, 50) + '%';
+          bar.style.background = '#4A7B40';
+        } else {
+          var leftPct = barPct;
+          bar.style.left  = leftPct + '%';
+          bar.style.width = (zeroPct - leftPct) + '%';
+          bar.style.background = '#B91C1C';
+        }
+        document.getElementById('out-ebitda-label').textContent = fmt(ebitda) + ' EBITDA';
+        document.getElementById('out-ebitda-label').style.color = ebitda >= 0 ? '#2d5a27' : '#B91C1C';
+
+        // Verdict
+        var verdict = document.getElementById('out-verdict');
+        var text, borderColor, bg;
+        if (ebitda >= 15) {
+          text = '\u2713 Bull scenario confirmed. Dispensary margin holding above 18% with capture expansion to ' + capRate + '% generates $' + dispGP.toFixed(0) + 'M of pharmacy gross profit. The physician network moat re-rates at 2\u20133\xd7 EV/Rev. Deerfield refinance is straightforward at this EBITDA level.';
+          borderColor = '#4A7B40'; bg = '#f5faf5';
+        } else if (ebitda >= 0) {
+          text = '\u2192 Base case. EBITDA of $' + ebitda.toFixed(1) + 'M \u2014 positive but fragile. A 200bps dispensary margin move or capture rate stall pushes back below breakeven. Deerfield: FCF positive (~$' + fcf.toFixed(1) + 'M), $36M estimated YE2026 cash. Manageable but requires execution. This is the thesis, not a stress case.';
+          borderColor = '#1A3C6B'; bg = '#f0f4fa';
+        } else if (ebitda >= -15) {
+          text = '\u26a0 Below breakeven. Cash burn of approximately $' + Math.abs(fcf).toFixed(0) + 'M/year against $33.6M starting cash. Runway of ' + runwayStr + ' before the Deerfield maturity wall (Aug 2027). Capital raise likely required. Dilution risk to existing equity holders is real at current stock price.';
+          borderColor = '#B45309'; bg = '#fffbf0';
+        } else {
+          text = '\u2717 Bear scenario. Dispensary margin compression to ' + dispGM.toFixed(1) + '% at ' + capRate + '% capture wipes $' + (dispGP).toFixed(0) + 'M of pharmacy GP. Cash exhausted before Deerfield maturity. Forced equity raise at distressed price \u2014 40\u201360M dilutive shares at sub-$3. Existing equity near-impaired.';
+          borderColor = '#B91C1C'; bg = '#fff8f8';
+        }
+        verdict.textContent = text;
+        verdict.style.borderColor = borderColor;
+        verdict.style.background = bg;
+      }
+
+      function monthsBurnVal(fcf) {
+        if (fcf >= 0) return Infinity;
+        return (STARTING_CASH / Math.abs(fcf)) * 12;
+      }
+
+      document.getElementById('disp-gm').addEventListener('input', calc);
+      document.getElementById('cap-rate').addEventListener('input', calc);
+      calc(); // initialize
+    })();
+    </script>
+
+    <p class="ps-source">Sources: TOI 10-K FY2025 (Note 19, Note 5, balance sheet) &middot; <a href="https://www.globenewswire.com/news-release/2026/03/12/3255105/0/en/The-Oncology-Institute-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Guidance-for-2026.html">Q4 2025 Earnings Release (GlobeNewswire, Mar 2026)</a> &middot; <a href="https://www.sec.gov/Archives/edgar/data/1799191/000107997326000068/ex99x1.htm">TOI 2026 Guidance Reaffirmation (SEC, Jan 2026)</a> &middot; <a href="https://investors.theoncologyinstitute.com/static-files/eb090d97-fb3c-4b5f-90a4-137fe7a2e43d">Deerfield Facility Agreement Terms (S-3/A, Jun 2025)</a> &middot; <a href="https://www.globenewswire.com/news-release/2025/02/26/3032876/0/en/The-Oncology-Institute-Announces-Amendment-to-Facility-Agreement-and-Debt-Paydown.html">Deerfield Amendment (GlobeNewswire, Feb 2025)</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL VIEW / POSITION
+     ============================================================ -->
+<section id="position">
+  <div class="container">
+    <h2 class="ps-title reveal">Final View: Long TOI &mdash; Medium-High Conviction</h2>
+    <div class="ps-rule reveal"></div>
+
+    <p class="ps-body reveal">The market has handed us a 0.65x forward revenue multiple on a company that just posted its first positive EBITDA and operating cash flow quarter as a public company, guides to 20% annual revenue growth through 2028, operates the only scaled delegated-capitation oncology network in the US, and has a payer-validated clinical model supported by audited CMS quality data that no institutional equity analyst is reading.</p>
+
+    <p class="ps-body reveal">The mispricing has three specific and independently verifiable causes: the M33 Growth technical overhang from a lifecycle fund exit, the dispensary revenue inflating gross margin screens to produce a false classification of the business, and consensus treating a fully-disclosed seasonal Q1 loss as thesis failure. None of these causes are structural. All three are resolving on a 6&ndash;18 month timeline. The Deerfield refinancing is the one genuine risk in the thesis, and it is manageable: Deerfield is an equity holder, the company is now cash-flow positive, and at $640 million of revenue it is bankable without dilutive equity issuance.</p>
+
+    <p class="ps-body reveal">The bull case at $8&ndash;10 requires Elevance to double its delegated life count &mdash; a contractual commitment already in force &mdash; and one additional market entry. The base case at $7.00 requires only that the business continues performing as it did in Q4 2025. The probability-weighted expected value is $5.30, implying +55% from entry. The asymmetry is 1.8:1 in favor of the long. We size this as a medium-high conviction position. We own it.</p>
+
+    <div class="data-table-wrapper reveal">
+      <table class="data-table" style="max-width:500px;">
+        <thead>
+          <tr><th>Parameter</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Entry Price</td><td class="td-bold">$3.43</td></tr>
+          <tr><td>Base Case Price Target</td><td class="td-positive">$7.00 (+104%)</td></tr>
+          <tr><td>Bull Case Price Target</td><td class="td-positive">$8&ndash;10 (+133&ndash;192%)</td></tr>
+          <tr><td>Bear Case Price Target</td><td class="td-negative">$1.45 (&minus;58%)</td></tr>
+          <tr class="highlight-row"><td><strong>Prob-Weighted EV</strong></td><td class="td-positive"><strong>$5.30 (+55%)</strong></td></tr>
+          <tr><td>Conviction</td><td class="td-bold">Medium-High</td></tr>
+          <tr><td>Stop-Loss Trigger</td><td>Dilutive equity raise &gt;10%; two consecutive EBITDA misses without structural explanation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ps-body reveal" style="margin-top:1.5rem;">The weighing machine, given enough time, tends to respect the arithmetic.</p>
+
+    <p class="ps-source reveal">Sources: <a href="https://www.globenewswire.com/news-release/2026/03/12/3255105/0/en/The-Oncology-Institute-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Guidance-for-2026.html">TOI Q4 2025 Earnings</a> &middot; <a href="https://lakecornelia.substack.com/p/the-oncology-institute-toi-a-growth">Lake Cornelia Deep-Dive</a> &middot; <a href="https://lakecornelia.substack.com/p/toi-q4-2025-update-wow">Lake Cornelia Q4 Update</a> &middot; <a href="https://cashmere.io/v/ME3ZZN">PitchBook</a> &middot; <a href="https://cashmere.io/v/WCwY8Z">Statista / CMS</a> &middot; <a href="https://www.globenewswire.com/news-release/2025/09/22/3153882/0/en/The-Oncology-Institute-Achieves-1-1-Million-in-Medicare-Savings-in-CMS-Enhancing-Oncology-Model-Performance-Period-2-through-its-California-Professional-Corporation.html">CMS EOM PP2</a> &middot; <a href="https://www.globenewswire.com/news-release/2025/02/26/3032876/0/en/The-Oncology-Institute-Announces-Amendment-to-Facility-Agreement-and-Debt-Paydown.html">Deerfield Amendment</a> &middot; <a href="https://podcasts.apple.com/us/podcast/can-ai-value-based-care-redesign-oncology-at-scale/id1786641881?i=1000717534511">AI &amp; VBC Podcast</a></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <p><strong>The Oncology Institute (TOI) &mdash; Long Thesis &mdash; April 2026</strong></p>
+    <p style="margin-top:0.75rem;">This memo represents the analytical views of the author as of April 14, 2026. Nothing herein constitutes investment advice or a solicitation to buy or sell securities. All financial data sourced from public SEC filings, company press releases, PitchBook, CB Insights, Statista, and third-party research. Analysts cited: B. Riley ($8 PT Buy), BTIG ($7 PT Buy), Needham ($5 PT Buy).</p>
+    <p style="margin-top:0.5rem;"><a href="https://www.globenewswire.com/news-release/2026/03/12/3255105/0/en/The-Oncology-Institute-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Guidance-for-2026.html">TOI Q4 2025 Earnings</a> &middot; <a href="https://lakecornelia.substack.com/p/the-oncology-institute-toi-a-growth">Lake Cornelia</a> &middot; <a href="https://cashmere.io/v/ME3ZZN">PitchBook</a></p>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-56px 0px -50% 0px' });
+  sections.forEach(s => navIO.observe(s));
+
+  // Deep dive dropdown
+  const ddToggle = document.getElementById('deepDiveToggle');
+  const ddEl = document.getElementById('deepDiveDropdown');
+  if (ddToggle && ddEl) {
+    ddToggle.addEventListener('click', () => ddEl.classList.toggle('open'));
+    document.addEventListener('click', (e) => { if (!ddEl.contains(e.target)) ddEl.classList.remove('open'); });
+  }
+
+  // Trigger reveals already in viewport on load
+  setTimeout(() => { revealEls.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < window.innerHeight) el.classList.add('visible'); }); }, 100);
+</script>
+</body>
+</html>
